@@ -5,13 +5,15 @@ from llama_index.core import Document, StorageContext, VectorStoreIndex
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
-from llamaindex_config import init_llama_index
-from util import extract_student_materials
+from .config import init_llama_index
+from .parser import extract_student_materials
 
-init_llama_index()
+DEFAULT_CHROMA_DIR = str(Path(__file__).resolve().parents[2] / "data" / "chroma_db")
 
 
-def index_and_persist_to_chroma(file: str, persist_dir: str = "./chroma_db"):
+def index_and_persist_to_chroma(file: str, persist_dir: str = DEFAULT_CHROMA_DIR):
+
+    init_llama_index()
 
     # Extract File
     pages = extract_student_materials(file)
@@ -59,7 +61,3 @@ def index_and_persist_to_chroma(file: str, persist_dir: str = "./chroma_db"):
         f"Successfully indexed and persisted {len(documents)} pages to '{persist_dir}'."
     )
     return index
-
-
-if __name__ == "__main__":
-    index_and_persist_to_chroma("history G-11 E.pdf")

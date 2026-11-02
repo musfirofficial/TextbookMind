@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.11"
 dependencies = [
     "chromadb>=1.5.9",
+    "fastapi>=0.162.0",
     "fastembed>=0.9.1",
     "groq>=1.7.0",
     "llama-index>=0.14.25",
@@ -16,7 +17,9 @@ dependencies = [
     "llama-index-embeddings-fastembed>=0.7.0",
     "llama-index-llms-groq>=0.6.1",
     "llama-index-vector-stores-chroma>=0.6.0",
+    "pydantic>=2.14.1",
     "pymupdf>=2.0",
+    "uvicorn>=0.54.0",
 ]
 
 [project.scripts]

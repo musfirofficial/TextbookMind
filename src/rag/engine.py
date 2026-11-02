@@ -1,19 +1,21 @@
+from pathlib import Path
+
 import chromadb
 from llama_index.core import PromptTemplate, VectorStoreIndex
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
-from llamaindex_config import init_llama_index
+from .config import init_llama_index
 
-init_llama_index()
-
-is_running = True
+DEFAULT_CHROMA_DIR = str(Path(__file__).resolve().parents[2] / "data" / "chroma_db")
 
 
 def load_query_engine(
     collection_name: str = "history-G-11-E",
-    persist_dir: str = "./chroma_db",
+    persist_dir: str = DEFAULT_CHROMA_DIR,
     similarity_top_k: int = 4,
 ):
+    init_llama_index()
+
     # connect to exisiting chroma client
     chroma_client = chromadb.PersistentClient(path=persist_dir)
     chroma_collection = chroma_client.get_collection(name=collection_name)
@@ -46,31 +48,3 @@ def load_query_engine(
     query_engine.update_prompts({"response_synthesizer:text_qa_template": qa_prompt})
 
     return query_engine
-
-
-def ask_text_book(query_engine, question: str):
-    response = query_engine.query(question)
-
-    print(f"\nAnswer:{str(response).strip()}")
-
-    print("Sources:\n")
-    seen_pages = set()
-    for index, node in enumerate(response.source_nodes, start=1):
-        meta = node.metadata
-        page = meta.get("page_number", "Unknown")
-        score = node.score if node.score is not None else 0.0
-
-        seen_pages.add(page)
-        print(f"[{index}] Page {page}| Similarity Score: {score:.3f}")
-
-    print(f"Cited Pages: {sorted(seen_pages)}")
-
-
-if __name__ == "__main__":
-    engine = load_query_engine()
-    while is_running:
-        question = input("Question:")
-        if question.lower() == "exit":
-            break
-
-        ask_text_book(engine, question=question)
