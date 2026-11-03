@@ -2,9 +2,12 @@ from pathlib import Path
 
 import chromadb
 from llama_index.core import PromptTemplate, VectorStoreIndex
+from llama_index.core.chat_engine import CondenseQuestionChatEngine
+from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
-from .config import init_llama_index
+from .config import get_condense_llm, init_llama_index
+from .prompts import condense_prompt, main_prompt
 
 DEFAULT_CHROMA_DIR = str(Path(__file__).resolve().parents[2] / "data" / "chroma_db")
 
@@ -25,18 +28,7 @@ def load_query_engine(
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
 
     # Prompt
-    prompt_tmpl = (
-        "You are an academic tutor helping high school students.\n"
-        "Answer the student's question strictly using the provided context blocks.\n"
-        "---------------------\n"
-        "{context_str}\n"
-        "---------------------\n"
-        "Rules:\n"
-        "1. Base your answer solely on the facts provided above; do not speculate.\n"
-        "2. format your response with clean Markdown tables only if the context contains tabular data, \n"
-        "3. If multiple sources discuss the topic, synthesize them chronologically.\n\n"
-        "Question: {query_str}\n"
-    )
+    prompt_tmpl = main_prompt()
 
     qa_prompt = PromptTemplate(prompt_tmpl)
 
@@ -48,3 +40,37 @@ def load_query_engine(
     query_engine.update_prompts({"response_synthesizer:text_qa_template": qa_prompt})
 
     return query_engine
+
+
+def load_chat_engine(
+    collection_name: str = "history-G-11-E",
+    persist_dir: str = DEFAULT_CHROMA_DIR,
+    similarity_top_k: int = 4,
+):
+
+    # Base Query Engine
+    query_engine = load_query_engine(
+        collection_name=collection_name,
+        persist_dir=persist_dir,
+        similarity_top_k=similarity_top_k,
+    )
+
+    # Get the condense LLM
+    condense_llm = get_condense_llm()
+
+    # Create a memory buffer for the chat engine
+    memory = ChatMemoryBuffer.from_defaults(token_limit=3000)
+
+    # Condense Prompt
+    condense_prompt_tmpl = PromptTemplate(condense_prompt())
+
+    # Define chat engine
+    chat_engine = CondenseQuestionChatEngine.from_defaults(
+        query_engine=query_engine,
+        llm=condense_llm,
+        memory=memory,
+        condense_question_prompt=condense_prompt_tmpl,
+        verbose=True,  # Prints rewritten query in terminal so you can see it working!
+    )
+
+    return chat_engine

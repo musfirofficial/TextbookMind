@@ -10,10 +10,11 @@ from llama_index.llms.groq import Groq
 ROOT_DIR = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT_DIR / ".env")
 
+model_cache_path = ROOT_DIR / ".model_cache"
+model_cache_path.mkdir(exist_ok=True)
+
 
 def init_llama_index():
-    model_cache_path = ROOT_DIR / ".model_cache"
-    model_cache_path.mkdir(exist_ok=True)
 
     # 1. Configure Groq LLM
     Settings.llm = Groq(
@@ -31,3 +32,12 @@ def init_llama_index():
     )
 
     print(f"Global LlamaIndex Settings Initialized. Cache: {model_cache_path}")
+
+
+# Condense Config
+def get_condense_llm():
+    return Groq(
+        model="allam-2-7b",
+        api_key=os.getenv("GROQ_API_KEY"),
+        temperature=0.1,  # Low temperature for strict factual rewriting
+    )

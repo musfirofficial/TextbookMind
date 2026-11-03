@@ -1,31 +1,28 @@
-from rag.engine import load_query_engine
+from rag.engine import load_chat_engine
 
 is_running = True
 
 
-def ask_text_book(query_engine, question: str):
-    response = query_engine.query(question)
+def ask_text_book(chat_engine, question: str):
+    response = chat_engine.chat(question)
 
-    print(f"\nAnswer:{str(response).strip()}")
+    print(f"\nAnswer:\n{str(response).strip()}\n")
 
-    print("Sources:\n")
-    seen_pages = set()
-    for index, node in enumerate(response.source_nodes, start=1):
-        meta = node.metadata
-        page = meta.get("page_number", "Unknown")
-        score = node.score if node.score is not None else 0.0
-
-        seen_pages.add(page)
-        print(f"[{index}] Page {page}| Similarity Score: {score:.3f}")
-
-    print(f"Cited Pages: {sorted(seen_pages)}")
+    if hasattr(response, "source_nodes") and response.source_nodes:
+        print("Sources:")
+        for idx, node in enumerate(response.source_nodes, start=1):
+            page = node.metadata.get("page_number", "Unknown")
+            score = node.score if node.score is not None else 0.0
+            print(f"[{idx}] Page {page} | Score: {score:.3f}")
 
 
 if __name__ == "__main__":
-    engine = load_query_engine()
+    engine = load_chat_engine()
+    print("Academic Tutor Ready! Type 'exit' to quit.\n")
     while is_running:
-        question = input("Question:")
-        if question.lower() == "exit":
+        question = input("Question: ")
+        if question.lower().strip() == "exit":
             break
-
+        if not question.strip():
+            continue
         ask_text_book(engine, question=question)
