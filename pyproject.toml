@@ -8,9 +8,12 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "aiosqlite>=0.22.1",
+    "asyncpg>=0.32.0",
     "chromadb>=1.5.9",
     "fastapi>=0.162.0",
     "fastembed>=0.9.1",
+    "greenlet>=3.5.6",
     "groq>=1.7.0",
     "llama-index>=0.14.25",
     "llama-index-core>=0.14.25",
@@ -19,6 +22,7 @@ dependencies = [
     "llama-index-vector-stores-chroma>=0.6.0",
     "pydantic>=2.14.1",
     "pymupdf>=2.0",
+    "sqlalchemy>=2.1.6",
     "uvicorn>=0.54.0",
 ]
 

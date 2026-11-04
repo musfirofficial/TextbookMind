@@ -12,11 +12,7 @@ from .prompts import condense_prompt, main_prompt
 DEFAULT_CHROMA_DIR = str(Path(__file__).resolve().parents[2] / "data" / "chroma_db")
 
 
-def load_query_engine(
-    collection_name: str = "history-G-11-E",
-    persist_dir: str = DEFAULT_CHROMA_DIR,
-    similarity_top_k: int = 4,
-):
+def load_query_engine(collection_name: str, persist_dir: str, similarity_top_k: int):
     init_llama_index()
 
     # connect to exisiting chroma client
@@ -45,7 +41,7 @@ def load_query_engine(
 def load_chat_engine(
     collection_name: str = "history-G-11-E",
     persist_dir: str = DEFAULT_CHROMA_DIR,
-    similarity_top_k: int = 4,
+    similarity_top_k: int = 6,
 ):
 
     # Base Query Engine
