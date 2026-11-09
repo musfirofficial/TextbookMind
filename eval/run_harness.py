@@ -183,7 +183,7 @@ def main():
     # Flatten all test cases into a single list
     tests = []
     for group in data:
-        collection = group.get("collection", "history-G-11-E")
+        collection = group.get("collection", "Full")
         for tc in group.get("test_cases", []):
             tc["_collection"] = collection
             tests.append(tc)

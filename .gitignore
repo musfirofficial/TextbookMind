@@ -1,22 +1,18 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
-
-# Folders
-.model_cache/
-chroma_db/
-
-# env files
+# Environment & Secrets (NEVER COMMIT)
 .env
 
-# File
-history G-10 E.pdf
-history G-11 E.pdf
-10290.pdf
+# Virtual Environment & Python Caches
+.venv/
+__pycache__/
+*.py[oc]
+.model_cache/
+
+# Large Binary Files (Too large for Git)
+data/*.pdf
+data/books/
+
+# Databases & Vector Indexes (Disposable / Local)
+data/*.db
+data/chroma_db/
+**/chroma_db/
+data/cache/

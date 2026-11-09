@@ -39,7 +39,7 @@ def load_query_engine(collection_name: str, persist_dir: str, similarity_top_k: 
 
 
 def load_chat_engine(
-    collection_name: str = "history-G-11-E",
+    collection_name: str = "Full",
     persist_dir: str = DEFAULT_CHROMA_DIR,
     similarity_top_k: int = 6,
 ):
