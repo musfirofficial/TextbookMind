@@ -7,6 +7,8 @@ from llama_index.core import Settings
 from llama_index.embeddings.fastembed import FastEmbedEmbedding
 from llama_index.llms.groq import Groq as LlamaGroq
 
+from rag.exceptions import ConfigError
+
 # Project root is 2 levels up from src/rag/
 ROOT_DIR = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT_DIR / ".env")
@@ -14,8 +16,10 @@ load_dotenv(ROOT_DIR / ".env")
 model_cache_path = ROOT_DIR / ".model_cache"
 model_cache_path.mkdir(exist_ok=True)
 
+# Config Groq Models
+GROQ_TOC_MODEL = "qwen/qwen3.8-27b"
+GROQ_MAIN_MODEL = "openai/gpt-oss-120b"
 
-from rag.exceptions import ConfigError
 
 # Config Gemini
 GEMINI_API_URL = (
@@ -33,11 +37,6 @@ def get_gemini_api_key() -> str:
             "Please add GEMINI_API_KEY to your .env file."
         )
     return api_key.strip()
-
-
-# Config Groq Models
-GROQ_TOC_MODEL = "qwen/qwen3.8-27b"
-GROQ_MAIN_MODEL = "openai/gpt-oss-120b"
 
 
 def get_groq_api_key() -> str:
@@ -93,4 +92,3 @@ def get_condense_llm():
         api_key=get_groq_api_key(),
         temperature=0.1,  # Low temperature for strict factual rewriting
     )
-

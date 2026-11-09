@@ -18,7 +18,7 @@ from rag.crud.textbook import (
 )
 from rag.db.session import get_session
 from rag.exceptions import ConfigError, IngestionError, QuotaExceededError
-from rag.ingest import (
+from rag.parser import (
     index_and_persist_to_chroma,
     index_pages_to_chroma,
     save_extracted_dataset,

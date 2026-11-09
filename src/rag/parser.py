@@ -1,516 +1,440 @@
-import base64
 import json
 import re
-import time
-import unicodedata
-from collections import Counter
 from pathlib import Path
 
-import httpx
 import pymupdf
-import pymupdf4llm
-from dotenv import load_dotenv
 
-from rag.config import GEMINI_API_URL, get_gemini_api_key
-from rag.prompts import gemini_toc_prompt
+from rag.config import get_gemini_api_key
+from rag.exceptions import (
+    ConfigError,
+    IngestionError,
+    QuotaExceededError,
+    VisionAPIError,
+)
 
-# Ensure environment variables are loaded
-ROOT_DIR = Path(__file__).resolve().parents[2]
-load_dotenv(ROOT_DIR / ".env")
+from .parser_util import (
+    TOC_EXTRA_PAGES,
+    classify_page,
+    detect_repeating_headers_footers,
+    extract_digital_page_markdown,
+    extract_printed_page_number,
+    extract_table_of_contents,
+    find_watermark_xrefs,
+    map_page_to_chapter,
+)
+from .vision import transcribe_page_with_gemini
 
-# ---------------------------------------------------------------------------
-# Configurable Parser Parameters (Easily tunable)
-# ---------------------------------------------------------------------------
-MAX_TOC_SEARCH_PAGES = 25  # Max early pages to scan for Contents
-TOC_EXTRA_PAGES = 2  # Extra pages to capture after "Contents" header (3 pages total)
-WATERMARK_REPEAT_THRESHOLD = 5  # XREFs appearing on >= 5 pages are watermarks
-MIN_IMAGE_DIM = 250  # Filters out tiny icons, bullets, and 1px lines
-MIN_VECTOR_DIM = 250  # Filters out 1px line dividers, catches charts/diagrams
-HEADER_MARGIN = 40  # Points from page top to inspect for running headers
-FOOTER_MARGIN = 40  # Points from page bottom to inspect for footers
-
-
-# ---------------------------------------------------------------------------
-def find_watermark_xrefs(
-    doc: pymupdf.Document, threshold: int = WATERMARK_REPEAT_THRESHOLD
-) -> set[int]:
-    """
-    Identifies image XREFs that appear repeatedly across pages.
-    In PDFs, watermarks and background logos reuse the exact same XREF.
-    """
-    xref_counts = Counter()
-    for page in doc:
-        try:
-            for img in page.get_images():
-                xref = img[0]
-                xref_counts[xref] += 1
-        except Exception:
-            continue
-
-    watermark_xrefs = {
-        xref for xref, count in xref_counts.items() if count >= threshold
-    }
-    return watermark_xrefs  # as a set
+CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache"
 
 
-# ---------------------------------------------------------------------------
-def detect_repeating_headers_footers(
-    doc: pymupdf.Document, sample_pages: int = 15
-) -> tuple[set[str], set[str]]:
-    """
-    Scans the top and bottom margins of early pages to find recurring running headers/footers.
-    Lines appearing on >= 3 consecutive pages are classified as headers/footers.
-    """
-    header_counts = Counter()
-    footer_counts = Counter()
-    mid_start = len(doc) // 2
-    pages_to_check = min(sample_pages, len(doc) - mid_start)
-
-    for p_idx in range(pages_to_check):
-        target_idx = mid_start + p_idx
-        if target_idx >= len(doc):
-            break
-        page = doc[target_idx]
-        p_height = page.rect.height
-        try:
-            blocks = page.get_text("blocks")
-            for b in blocks:
-                b_text = b[4].strip()
-                if not b_text or len(b_text) > 120:
-                    continue
-                # Top header zone
-                if b[1] < HEADER_MARGIN:
-                    header_counts[b_text] += 1
-                # Bottom footer zone
-                elif b[3] > (p_height - FOOTER_MARGIN):
-                    footer_counts[b_text] += 1
-        except Exception:
-            continue
-
-    repeating_headers = {text for text, count in header_counts.items() if count >= 3}
-    repeating_footers = {text for text, count in footer_counts.items() if count >= 3}
-    return repeating_headers, repeating_footers
+def get_checkpoint_path(file_path: str) -> Path:
+    """Returns the JSON checkpoint cache path for a given textbook file."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
+    return CACHE_DIR / f"{clean_stem}_checkpoint.json"
 
 
-# ---------------------------------------------------------------------------
-def find_toc_start_page(
-    doc: pymupdf.Document, max_search_pages: int = MAX_TOC_SEARCH_PAGES
-) -> int | None:
-    """
-    Locates the 0-indexed physical page where the Table of Contents begins.
-    1. Checks for prominent TOC keywords (e.g. 'contents', 'table of contents', 'chapters', 'index').
-    2. Fallback: Checks for chapter/page number patterns, excluding writer credits.
-    """
-    keywords = ["table of contents", "contents", "chapters", "content", "index"]
-    for i in range(min(max_search_pages, len(doc))):
-        try:
-            t = doc[i].get_text().lower()
-            for line in t.split("\n"):
-                line_str = line.strip()
-                if line_str in keywords:
-                    return i
-                if any(k in line_str for k in ["table of contents", "contents"]):
-                    return i
-        except Exception:
-            continue
+def load_checkpoint(cache_path: Path) -> dict[int, dict]:
+    """Loads checkpoint cache. Returns dict of {pdf_page: page_dict}."""
+    if not cache_path.exists():
+        return {}
+    try:
+        with open(cache_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            pages = data.get("pages", [])
+            return {p["pdf_page"]: p for p in pages if "pdf_page" in p}
+    except Exception as e:
+        print(f"[WARNING] Could not read checkpoint cache: {e}. Starting fresh.")
+        return {}
 
-    # Fallback: scan for chapter entries with page numbers (avoiding contributor credit pages)
-    for i in range(min(max_search_pages, len(doc))):
-        try:
-            t = doc[i].get_text()
-            t_lower = t.lower()
-            if "panel of writers" in t_lower or "panel of editors" in t_lower:
-                continue
-            numbered_with_pages = re.findall(
-                r"\d{1,2}\.?\s+[A-Za-z][^\n]+\s*\n?\s*\d{1,3}", t
+
+def save_checkpoint(
+    cache_path: Path, pages: list[dict], file_path: str, total_pages: int
+):
+    """Saves current extracted pages to checkpoint cache."""
+    try:
+        data = {
+            "document_name": Path(file_path).name,
+            "total_pages": total_pages,
+            "completed_count": len(pages),
+            "pages": pages,
+        }
+        temp_path = cache_path.with_suffix(".tmp")
+        with open(temp_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        temp_path.replace(cache_path)
+    except Exception as e:
+        print(f"[WARNING] Failed to write checkpoint cache: {e}")
+
+
+def remove_checkpoint(cache_path: Path):
+    """Removes checkpoint cache upon 100% successful ingestion."""
+    try:
+        if cache_path.exists():
+            cache_path.unlink()
+            print(
+                f"[CACHE] Ingestion complete. Cleaned up checkpoint: {cache_path.name}"
             )
-            if len(numbered_with_pages) >= 3:
-                # Check if previous page has vector drawings / blank text (e.g. Science Part 2 TOC page 1)
-                if (
-                    i > 0
-                    and len(doc[i - 1].get_drawings()) > 100
-                    and len(doc[i - 1].get_text().strip()) < 50
-                ):
-                    return i - 1
-                return i
-        except Exception:
-            continue
+    except Exception as e:
+        print(f"[WARNING] Could not delete checkpoint {cache_path}: {e}")
 
+
+EXTRACTED_DIR = Path(__file__).resolve().parents[2] / "data" / "extracted"
+
+
+def get_extracted_path(file_path: str) -> Path:
+    """Returns the permanent extracted dataset path (data/extracted/<clean_stem>.json)."""
+    EXTRACTED_DIR.mkdir(parents=True, exist_ok=True)
+    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
+    return EXTRACTED_DIR / f"{clean_stem}.json"
+
+
+def save_extracted_dataset(file_path: str, pages: list[dict]) -> Path:
+    """Saves the final extracted textbook pages permanently to data/extracted/<clean_stem>.json."""
+    out_path = get_extracted_path(file_path)
+    temp_path = out_path.with_suffix(".tmp")
+    with open(temp_path, "w", encoding="utf-8") as f:
+        json.dump(pages, f, ensure_ascii=False, indent=2)
+    temp_path.replace(out_path)
+    print(
+        f"\n[DATASET] Saved permanent textbook dataset ({len(pages)} pages) to: {out_path}"
+    )
+    return out_path
+
+
+def load_extracted_dataset(file_path: str) -> list[dict] | None:
+    """Loads permanent extracted dataset if it already exists."""
+    out_path = get_extracted_path(file_path)
+    if out_path.exists():
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                pages = json.load(f)
+                if isinstance(pages, list) and len(pages) > 0:
+                    return pages
+        except Exception as e:
+            print(f"[WARNING] Could not load extracted dataset from {out_path}: {e}")
     return None
 
 
-# ---------------------------------------------------------------------------
-def extract_table_of_contents(
-    doc: pymupdf.Document,
-    max_search_pages: int = MAX_TOC_SEARCH_PAGES,
-    extra_pages: int = TOC_EXTRA_PAGES,
-    max_retries: int = 3,
-) -> tuple[list[dict], int | None]:
+def parse_and_prepare_textbook(
+    file_path: str,
+    grade: int | None = None,
+    subject: str | None = None,
+    medium: str = "english",
+    edition: int | str | None = None,
+    auto_ingest: bool = False,
+    include_images: bool = True,
+    toc_extra_pages: int = TOC_EXTRA_PAGES,
+    force_reextract: bool = False,
+) -> list[dict]:
     """
-    Extracts the Table of Contents into a structured list of chapters, along with
-    the physical 0-indexed page index where the TOC starts.
-    Directly renders the detected TOC pages (up to extra_pages + 1) as images and sends
-    them to Gemini Vision to extract a clean JSON list of chapters.
-    Returns:
-        (chapters_list, toc_start_page_idx)
+    Main Pre-Chunking Ingestion Coordinator:
+    1. Checks if a permanent extracted dataset exists (loads in 0.05s if present).
+    2. Otherwise pre-scans document for repeating watermarks & headers/footers.
+    3. Extracts Table of Contents (TOC) via Gemini Vision on rendered TOC pages.
+    4. Classifies pages into Text-Only vs Visual (tables, large images, vector charts).
+       If include_images is False, only pages with tables or vector drawings are sent to Gemini.
+    5. Displays a summary dashboard with TOC and page counts.
+    6. Pauses for user confirmation ('Proceed') if auto_ingest is False.
+    7. Extracts pages in sequential order (resumable via checkpoint cache).
+    8. Attaches complete metadata and saves permanently to data/extracted/<stem>.json.
     """
-    toc_start_page = find_toc_start_page(doc, max_search_pages)
-    if toc_start_page is None:
-        print("[INFO] No Table of Contents detected in early pages.")
-        return [], None
+    path_obj = Path(file_path).resolve()
+    if not path_obj.exists():
+        raise FileNotFoundError(f"Textbook file not found at path: {file_path}")
 
-    # Render TOC pages (up to 1 + extra_pages) as 100 DPI JPEGs (~60-80KB each)
-    end_scan = min(toc_start_page + 1 + extra_pages, len(doc))
-    prompt_text = gemini_toc_prompt()
-    parts = [{"text": prompt_text}]
-
-    rendered_pages = 0
-    for p_idx in range(toc_start_page, end_scan):
-        # Stop early if we reach the start of textbook lesson body
-        if p_idx > toc_start_page:
-            try:
-                early_text = doc[p_idx].get_text()[:250].lower()
-                if any(
-                    kw in early_text
-                    for kw in ["chapter 1", "unit 1", "unit 13", "13.1", "1.1", "lesson 1"]
-                ):
-                    break
-            except Exception:
-                pass
-
-        try:
-            pix = doc[p_idx].get_pixmap(dpi=100)
-            img_bytes = pix.tobytes("jpeg", jpg_quality=75)
-            parts.append(
-                {
-                    "inline_data": {
-                        "mime_type": "image/jpeg",
-                        "data": base64.b64encode(img_bytes).decode("utf-8"),
-                    }
-                }
+    # Check if a completed permanent dataset already exists
+    if not force_reextract:
+        saved_dataset = load_extracted_dataset(str(path_obj))
+        if saved_dataset:
+            print("\n" + "=" * 65)
+            print(f"  DATASET FOUND: {get_extracted_path(str(path_obj)).name}")
+            print("=" * 65)
+            print(
+                f"[DATASET] Loaded {len(saved_dataset)} pages instantly from disk ($0 API cost, 0s).\n"
             )
-            rendered_pages += 1
-        except Exception as e:
-            print(f"[WARNING] Could not render TOC page {p_idx} for Gemini: {e}")
-
-    if rendered_pages == 0:
-        return [], toc_start_page
-
-    payload = {
-        "contents": [{"parts": parts}],
-        "generationConfig": {
-            "temperature": 0.0,
-            "maxOutputTokens": 4096,
-        },
-    }
+            return saved_dataset
 
     try:
-        api_key = get_gemini_api_key()
-    except Exception as e:
-        print(f"[WARNING] Gemini API key not available for TOC extraction: {e}")
-        return [], toc_start_page
+        doc = pymupdf.open(str(path_obj))
+    except Exception as exc:
+        raise IngestionError(f"Failed to open PDF '{file_path}': {exc}") from exc
 
-    headers = {
-        "Content-Type": "application/json",
-        "x-goog-api-key": api_key,
-    }
+    total_pages = len(doc)
+    if total_pages == 0:
+        doc.close()
+        raise ValueError(f"PDF '{file_path}' has 0 pages.")
 
-    content = ""
-    for attempt in range(max_retries):
-        try:
-            with httpx.Client(http2=True, timeout=60.0) as client:
-                response = client.post(
-                    GEMINI_API_URL,
-                    json=payload,
-                    headers=headers,
-                )
+    print("\n" + "=" * 65)
+    print(f"  PRE-SCANNING TEXTBOOK: {path_obj.name}")
+    print("=" * 65)
 
-            if response.status_code == 200:
-                data = response.json()
-                candidates = data.get("candidates", [])
-                if candidates:
-                    parts_out = candidates[0].get("content", {}).get("parts", [])
-                    content = "".join(p.get("text", "") for p in parts_out).strip()
-                break
-            else:
-                if attempt < max_retries - 1:
-                    time.sleep(2 * (attempt + 1))
-                else:
-                    print(
-                        f"[WARNING] Gemini TOC extraction failed with HTTP {response.status_code}: {response.text[:200]}"
-                    )
-        except Exception as exc:
-            if attempt < max_retries - 1:
-                time.sleep(2 * (attempt + 1))
-            else:
-                print(f"[WARNING] Gemini TOC extraction connection error: {exc}")
+    # ------------------------------------------------------------------
+    # Step 1: Pre-Scan Watermarks & Repeating Headers/Footers
+    # ------------------------------------------------------------------
+    watermark_xrefs = find_watermark_xrefs(doc)
+    detect_repeating_headers_footers(doc)
 
-    if not content:
-        return [], toc_start_page
+    # ------------------------------------------------------------------
+    # Step 2: Extract Table of Contents (Bookmarks -> Groq Fallback)
+    # ------------------------------------------------------------------
+    print("Extracting Table of Contents (TOC)...")
+    toc, toc_start_page = extract_table_of_contents(doc, extra_pages=toc_extra_pages)
 
-    # Parse JSON from model output
-    chapters = []
-    try:
-        match = re.search(r"\[[\s\S]*\]", content)
-        if match:
-            chapters = json.loads(match.group(0))
-        else:
-            cleaned = content.strip()
-            cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
-            cleaned = re.sub(r"\s*```$", "", cleaned)
-            chapters = json.loads(cleaned)
-    except Exception as e:
-        print(f"[WARNING] Could not parse Gemini TOC JSON response: {e}")
-        return [], toc_start_page
-
-    if not isinstance(chapters, list):
-        return [], toc_start_page
-
-    # Validate and clean up chapters
-    valid_chapters = []
-    for idx, item in enumerate(chapters):
-        if not isinstance(item, dict):
-            continue
-        try:
-            ch_num = int(item.get("chapter_number", idx + 1))
-        except (ValueError, TypeError):
-            ch_num = idx + 1
-
-        title = str(item.get("title", f"Chapter {ch_num}")).strip()
-
-        try:
-            start_p = int(item["start_page"])
-        except (KeyError, ValueError, TypeError):
-            continue
-
-        end_p = item.get("end_page")
-        if end_p is not None:
-            try:
-                end_p = int(end_p)
-            except (ValueError, TypeError):
-                end_p = None
-
-        valid_chapters.append(
-            {
-                "chapter_number": ch_num,
-                "title": title,
-                "start_page": start_p,
-                "end_page": end_p,
+    # ------------------------------------------------------------------
+    # Step 3: Classify Pages (Text-Only vs Visual)
+    # ------------------------------------------------------------------
+    page_classifications = []
+    for p_idx, page in enumerate(doc):
+        # Pages before the Table of Contents are front matter and skipped from Gemini Vision
+        is_front_matter = toc_start_page is not None and p_idx < toc_start_page
+        if is_front_matter:
+            cls_info = {
+                "is_visual": False,
+                "has_tables": False,
+                "has_images": False,
+                "has_drawings": False,
+                "is_front_matter": True,
             }
+        else:
+            cls_info = classify_page(
+                page, watermark_xrefs=watermark_xrefs, include_images=include_images
+            )
+            cls_info["is_front_matter"] = False
+        page_classifications.append(cls_info)
+
+    text_only_count = sum(1 for c in page_classifications if not c["is_visual"])
+    visual_count = total_pages - text_only_count
+    front_matter_count = sum(
+        1 for c in page_classifications if c.get("is_front_matter")
+    )
+    table_count = sum(1 for c in page_classifications if c["has_tables"])
+    image_count = sum(1 for c in page_classifications if c["has_images"])
+    drawing_count = sum(1 for c in page_classifications if c["has_drawings"])
+
+    text_pct = (text_only_count / total_pages) * 100
+    visual_pct = (visual_count / total_pages) * 100
+
+    # ------------------------------------------------------------------
+    # Step 4: Display Pre-Scan Summary & TOC Dashboard
+    # ------------------------------------------------------------------
+    print("\n" + "-" * 65)
+    print("  TABLE OF CONTENTS")
+    print("-" * 65)
+    if toc:
+        for ch in toc:
+            ch_num = ch.get("chapter_number", "?")
+            title = ch.get("title", "Untitled")
+            s_page = ch.get("start_page", "?")
+            e_page = ch.get("end_page", "?")
+            print(f"  [Chapter {ch_num:>2}] {title:<42} (Pages {s_page} - {e_page})")
+    else:
+        print("  (No structured Table of Contents detected in first 25 pages)")
+
+    print("\n" + "-" * 65)
+    print("  PAGE CLASSIFICATION SUMMARY")
+    print("-" * 65)
+    print(f"  Textbook File:       {path_obj.name}")
+    print(
+        f"  Metadata:            Grade: {grade or 'N/A'} | Subject: {subject or 'N/A'} | Medium: {medium} | Edition: {edition or 'N/A'}"
+    )
+    print(f"  Total Pages:         {total_pages}")
+    if not include_images:
+        print(
+            "  Image Routing:       Disabled (Only tables & vector drawings sent to Gemini)"
+        )
+    if front_matter_count > 0:
+        print(
+            f"  Front-Matter Pages:  {front_matter_count} (Pages 1 - {front_matter_count}) -> Skipped Gemini ($0)"
+        )
+    print(
+        f"  Text-Only Pages:     {text_only_count} ({text_pct:.1f}%) -> Local PyMuPDF ($0)"
+    )
+    print(
+        f"  Visual Pages:        {visual_count} ({visual_pct:.1f}%) -> Gemini Flash Lite"
+    )
+    print(f"    - With Tables:     {table_count}")
+    print(f"    - With Diagrams:   {image_count}")
+    print(f"    - With Vector Art: {drawing_count}")
+    print(f"  Watermarks Excluded: {len(watermark_xrefs)} repeating asset XREFs")
+    print("-" * 65)
+
+    # ------------------------------------------------------------------
+    # Step 5: Approval Gate (Proceed / Cancel)
+    # ------------------------------------------------------------------
+    if not auto_ingest:
+        user_choice = input(
+            "\nType 'Proceed' to begin extraction (or 'n' to cancel): "
+        ).strip()
+        if user_choice.lower() not in ["proceed", "y", "yes"]:
+            print("\n[INFO] Ingestion cancelled by user. Exiting safely.\n")
+            doc.close()
+            return []
+    else:
+        print("\n[AUTO INGEST] auto_ingest=True: Proceeding automatically...")
+
+    # Early check: Ensure Gemini API key is available before starting extraction if visual pages exist
+    if visual_count > 0:
+        get_gemini_api_key()
+
+    # ------------------------------------------------------------------
+    # Step 6: Ordered Page Extraction with Checkpoint & Fallback
+    # ------------------------------------------------------------------
+    cache_path = get_checkpoint_path(str(path_obj))
+    cached_pages = load_checkpoint(cache_path)
+    if cached_pages:
+        print(
+            f"\n[RESUME] Found existing checkpoint cache ({len(cached_pages)}/{total_pages} pages completed). Resuming..."
         )
 
-    # Sort chapters by start_page
-    valid_chapters.sort(key=lambda c: c["start_page"])
+    print(f"\nExtracting {total_pages} pages in sequential order...")
+    extracted_pages = []
 
-    # Fill in missing end_page
-    for i, ch in enumerate(valid_chapters):
-        if ch["end_page"] is None or ch["end_page"] < ch["start_page"]:
-            if i + 1 < len(valid_chapters):
-                ch["end_page"] = max(
-                    ch["start_page"], valid_chapters[i + 1]["start_page"] - 1
-                )
-            else:
-                ch["end_page"] = ch["start_page"] + 20
+    # Calculate page offset from first printed book page if available
+    first_printed_page = None
+    first_printed_pdf_idx = None
+    # 1. Search for Book Page 1 specifically
+    for p_idx in range(min(35, total_pages)):
+        bp = extract_printed_page_number(doc[p_idx])
+        if bp == 1:
+            first_printed_page = bp
+            first_printed_pdf_idx = p_idx + 1
+            break
 
-    return valid_chapters, toc_start_page
-
-
-# ---------------------------------------------------------------------------
-def classify_page(
-    page: pymupdf.Page,
-    watermark_xrefs: set[int],
-    min_image_dim: int = MIN_IMAGE_DIM,
-    min_vector_dim: int = MIN_VECTOR_DIM,
-    include_images: bool = True,
-) -> dict:
-    """
-    Classifies a page into 'text_only' vs 'visual'.
-    - If include_images is True: pages with tables, large images, or vector charts are visual.
-    - If include_images is False: ONLY pages with tables or vector charts are visual
-      (embedded raster images do NOT trigger visual/Gemini routing).
-    Defensively catches any image or vector errors so corrupted pages never crash the pipeline.
-    """
-    has_tables = False
-    has_images = False
-    has_drawings = False
-
-    # 1. Check for Tables
-    try:
-        tables = page.find_tables()
-        if tables and len(tables.tables) > 0:
-            has_tables = True
-    except Exception:
-        has_tables = False
-
-    # 2. Check for Non-Watermark Images
-    try:
-        images = page.get_images()
-        for img in images:
-            xref = img[0]
-            if xref in watermark_xrefs:
-                continue
-            pixel_w = img[2]
-            pixel_h = img[3]
-            if pixel_w >= min_image_dim and pixel_h >= min_image_dim:
-                has_images = True
+    # 2. If Book Page 1 wasn't found (e.g. unnumbered intro), find first low number after TOC
+    if first_printed_page is None:
+        start_scan = toc_start_page or 0
+        for p_idx in range(start_scan, min(start_scan + 25, total_pages)):
+            bp = extract_printed_page_number(doc[p_idx])
+            if bp is not None and 0 < bp <= 15:
+                first_printed_page = bp
+                first_printed_pdf_idx = p_idx + 1
                 break
-    except Exception:
-        has_images = False
 
-    # 3. Check for Large Vector Drawings (charts, flowcharts, geometry)
-    try:
-        drawings = page.get_drawings()
-        for d in drawings:
-            rect = d.get("rect")
-            if rect:
-                w = rect.width
-                h = rect.height
-                # Ignore 1px lines, dividers, and tiny icons
-                if w >= min_vector_dim and h >= min_vector_dim:
-                    items = d.get("items", [])
-                    # Ignore single colored background boxes/banners behind headings
-                    if len(items) <= 1 and items and items[0][0] == "re":
-                        continue
-                    has_drawings = True
-                    break
-    except Exception:
-        has_drawings = False
+    page_offset = (
+        (first_printed_pdf_idx - first_printed_page)
+        if (first_printed_page and first_printed_pdf_idx)
+        else 0
+    )
+    if page_offset:
+        print(
+            f"[PAGE OFFSET] Detected Book Page {first_printed_page} at PDF Page {first_printed_pdf_idx} (Offset: {page_offset})"
+        )
 
-    # Visual routing: only include raster images if include_images is True
-    is_visual = has_tables or has_drawings or (has_images if include_images else False)
+    for p_idx, page in enumerate(doc):
+        pdf_page = p_idx + 1
+        classification = page_classifications[p_idx]
 
-    return {
-        "is_visual": is_visual,
-        "has_tables": has_tables,
-        "has_images": has_images,
-        "has_drawings": has_drawings,
-    }
+        # 1. Resume from Checkpoint if already extracted
+        if pdf_page in cached_pages:
+            cached_record = cached_pages[pdf_page]
+            extracted_pages.append(cached_record)
+            ch_num = cached_record.get("chapter_number")
+            ch_label = f"Ch.{ch_num}" if ch_num else "General"
+            b_page = cached_record.get("book_page") or "N/A"
+            method = cached_record.get("extraction_method", "cached")
+            print(
+                f"  [{pdf_page:>3}/{total_pages}] [{method:<17}] {ch_label:<8} (Book Page: {b_page}) [CACHED]"
+            )
+            continue
 
+        book_page = extract_printed_page_number(page)
+        # Infer book page from offset if unprinted (e.g. full-page diagrams/illustrations)
+        if (
+            book_page is None
+            and page_offset
+            and pdf_page > page_offset
+            and not classification.get("is_front_matter", False)
+        ):
+            book_page = pdf_page - page_offset
 
-# ---------------------------------------------------------------------------
-def clean_text(text: str) -> str:
-    """Applies Unicode normalization (NFKD) and cleans ghost spaces & soft hyphens."""
-    if not text:
-        return ""
-    text = unicodedata.normalize("NFKD", text)
-    text = text.replace("\xa0", " ").replace("\xad", "")
-    return text.strip()
+        # Map to chapter
+        if classification.get("is_front_matter", False):
+            chapter_num = None
+            chapter_title = "Front Matter"
+        else:
+            chapter_num, chapter_title = map_page_to_chapter(
+                book_page=book_page,
+                pdf_page=pdf_page,
+                toc=toc,
+                page_offset=page_offset,
+            )
 
+        # Route extraction path:
+        # Visual pages after the TOC go to Gemini Vision; front matter and text-only go to digital
+        if classification["is_visual"] and not classification.get(
+            "is_front_matter", False
+        ):
+            # Render page to PNG bytes for Gemini Vision
+            try:
+                pix = page.get_pixmap(dpi=150)
+                image_bytes = pix.tobytes("png")
+                page_text = transcribe_page_with_gemini(image_bytes, page_num=pdf_page)
+                extraction_method = "gemini_vision"
+            except (QuotaExceededError, ConfigError):
+                doc.close()
+                save_checkpoint(cache_path, extracted_pages, str(path_obj), total_pages)
+                raise
+            except VisionAPIError as ve:
+                print(
+                    f"\n[FALLBACK] Page {pdf_page}: Gemini vision extraction failed after retries: {ve}. "
+                    f"Falling back to local digital extraction."
+                )
+                page_text = extract_digital_page_markdown(doc, page)
+                extraction_method = "digital_fallback"
+            except Exception as e:
+                print(
+                    f"\n[FALLBACK] Page {pdf_page}: Unexpected error during vision extraction: {e}. "
+                    f"Falling back to local digital extraction."
+                )
+                page_text = extract_digital_page_markdown(doc, page)
+                extraction_method = "digital_fallback"
+        else:
+            page_text = extract_digital_page_markdown(doc, page)
+            extraction_method = "digital"
 
-# ---------------------------------------------------------------------------
-def extract_printed_page_number(page: pymupdf.Page) -> int | None:
-    """
-    Extracts the printed book page number from the page:
-    1. Checks PDF page labels (page.get_label()).
-    2. Scans footer blocks (bottom 65pt) and header blocks (top 65pt).
-    3. Matches pure numbers ('8', '- 6 -', '— 12 —'), 'For free distribution 8',
-       '6   For free distribution', 'Page 8', and short header/footer lines.
-    """
-    # 1. Check built-in page label
-    label = page.get_label()
-    if label and label.strip().isdigit():
-        return int(label.strip())
+        # If include_images is False, raster images are not routed to Gemini Vision for transcription;
+        # only vector drawings (diagrams, flowcharts, charts) represent transcribed figures.
+        has_figures = (
+            classification["has_drawings"]
+            if not include_images
+            else (classification["has_images"] or classification["has_drawings"])
+        )
 
-    # 2. Check text blocks in footer and header margins
-    try:
-        blocks = page.get_text("blocks")
-        if not blocks:
-            return None
+        page_record = {
+            "document_name": path_obj.name,
+            "grade": grade,
+            "subject": subject,
+            "medium": medium,
+            "edition": edition,
+            "pdf_page": pdf_page,
+            "book_page": book_page,
+            "chapter_number": chapter_num,
+            "chapter_title": chapter_title,
+            "has_figures": has_figures,
+            "has_tables": classification["has_tables"],
+            "extraction_method": extraction_method,
+            "text": page_text,
+        }
+        extracted_pages.append(page_record)
 
-        p_height = page.rect.height
-        # Collect blocks located in the footer margin (bottom 65pt)
-        footer_blocks = [b for b in blocks if b[3] >= p_height - 65]
-        # Collect header blocks if footer has nothing (top 65pt)
-        header_blocks = [b for b in blocks if b[1] <= 65]
+        # Save progress to checkpoint cache
+        save_checkpoint(cache_path, extracted_pages, str(path_obj), total_pages)
 
-        # Prioritize footer blocks (where curriculum books put page numbers)
-        for block_group in [footer_blocks, header_blocks]:
-            for b in block_group:
-                text = b[4].strip()
-                lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
-                for line in lines:
-                    # Case A: Pure number or hyphenated: '8', '- 6 -', '— 12 —'
-                    m = re.search(r"^[-–—\s]*(\d+)[-–—\s]*$", line)
-                    if m and 0 < int(m.group(1)) < 2000:
-                        return int(m.group(1))
+        if classification.get("is_front_matter", False):
+            ch_label = "Front Matter"
+        elif chapter_num:
+            ch_label = f"Ch.{chapter_num}"
+        else:
+            ch_label = "General"
 
-                    # Case B: Prefixed: 'For free distribution 8', 'Page 8', 'Pg. 8'
-                    m = re.search(
-                        r"(?:for free distribution|page|pg\.?)\s*(\d+)\b",
-                        line,
-                        re.IGNORECASE,
-                    )
-                    if m and 0 < int(m.group(1)) < 2000:
-                        return int(m.group(1))
+        print(
+            f"  [{pdf_page:>3}/{total_pages}] [{extraction_method:<17}] {ch_label:<12} (Book Page: {book_page or 'N/A'})"
+        )
 
-                    # Case C: Suffixed: '6   For free distribution', '6 Page'
-                    m = re.search(
-                        r"^\s*(\d+)\s*(?:for free distribution|page|pg\.?)\b",
-                        line,
-                        re.IGNORECASE,
-                    )
-                    if m and 0 < int(m.group(1)) < 2000:
-                        return int(m.group(1))
+    doc.close()
 
-                    # Case D: Short line (<= 35 chars) ending with a number: e.g. 'Science 8'
-                    if len(line) <= 35:
-                        m = re.search(r"(?:^|\s)(\d+)\s*$", line)
-                        if m and 0 < int(m.group(1)) < 2000:
-                            return int(m.group(1))
-    except Exception:
-        pass
-
-    return None
-
-
-# ---------------------------------------------------------------------------
-def extract_digital_page_markdown(doc: pymupdf.Document, page: pymupdf.Page) -> str:
-    """
-    Extracts text-only pages cleanly to Markdown using pymupdf4llm,
-    with defensive fallback to page.get_text('blocks').
-    """
-    try:
-        md = pymupdf4llm.to_markdown(doc, pages=[page.number])
-        if md and md.strip():
-            return clean_text(md)
-    except Exception:
-        pass
-
-    # Fallback to standard blocks
-    try:
-        blocks = page.get_text("blocks")
-        text = "\n\n".join(b[4].strip() for b in blocks if b[4].strip())
-        return clean_text(text)
-    except Exception:
-        return ""
-
-
-# ---------------------------------------------------------------------------
-def map_page_to_chapter(
-    book_page: int | None,
-    pdf_page: int,
-    toc: list[dict],
-    page_offset: int = 0,
-) -> tuple[int | None, str | None]:
-    """
-    Maps a page to its corresponding chapter from the Table of Contents.
-    Uses book_page if available; otherwise uses (pdf_page - page_offset).
-    Returns (None, None) if the page is before Chapter 1 or unmapped.
-    """
-    if not toc:
-        return None, None
-
-    if book_page is not None:
-        effective_page = book_page
-    else:
-        effective_page = pdf_page - page_offset
-        if effective_page < 1:
-            return None, None
-
-    for item in toc:
-        start_p = item.get("start_page", 0)
-        end_p = item.get("end_page", 999999)
-        if start_p <= effective_page <= end_p:
-            return item.get("chapter_number"), item.get("title")
-
-    return None, None
+    # Once 100% completed successfully, delete the checkpoint cache and save permanent dataset
+    remove_checkpoint(cache_path)
+    save_extracted_dataset(str(path_obj), extracted_pages)
+    print(f"\n[SUCCESS] Successfully extracted {len(extracted_pages)} pages.\n")
