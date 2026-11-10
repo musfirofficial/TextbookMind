@@ -1,10 +1,8 @@
-import json
-import re
 from pathlib import Path
 
 import pymupdf
 
-from rag.config import get_gemini_api_key
+from rag.core.config import get_gemini_api_key
 from rag.exceptions import (
     ConfigError,
     IngestionError,
@@ -12,108 +10,27 @@ from rag.exceptions import (
     VisionAPIError,
 )
 
-from .parser_util import (
+from .util import (
     TOC_EXTRA_PAGES,
     classify_page,
-    detect_repeating_headers_footers,
     extract_digital_page_markdown,
     extract_printed_page_number,
     extract_table_of_contents,
     find_watermark_xrefs,
+    get_checkpoint_path,
+    get_extracted_path,
+    load_checkpoint,
+    load_extracted_dataset,
     map_page_to_chapter,
+    remove_checkpoint,
+    save_checkpoint,
+    save_extracted_dataset,
 )
 from .vision import transcribe_page_with_gemini
 
-CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache"
-
-
-def get_checkpoint_path(file_path: str) -> Path:
-    """Returns the JSON checkpoint cache path for a given textbook file."""
-    CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
-    return CACHE_DIR / f"{clean_stem}_checkpoint.json"
-
-
-def load_checkpoint(cache_path: Path) -> dict[int, dict]:
-    """Loads checkpoint cache. Returns dict of {pdf_page: page_dict}."""
-    if not cache_path.exists():
-        return {}
-    try:
-        with open(cache_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            pages = data.get("pages", [])
-            return {p["pdf_page"]: p for p in pages if "pdf_page" in p}
-    except Exception as e:
-        print(f"[WARNING] Could not read checkpoint cache: {e}. Starting fresh.")
-        return {}
-
-
-def save_checkpoint(
-    cache_path: Path, pages: list[dict], file_path: str, total_pages: int
-):
-    """Saves current extracted pages to checkpoint cache."""
-    try:
-        data = {
-            "document_name": Path(file_path).name,
-            "total_pages": total_pages,
-            "completed_count": len(pages),
-            "pages": pages,
-        }
-        temp_path = cache_path.with_suffix(".tmp")
-        with open(temp_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        temp_path.replace(cache_path)
-    except Exception as e:
-        print(f"[WARNING] Failed to write checkpoint cache: {e}")
-
-
-def remove_checkpoint(cache_path: Path):
-    """Removes checkpoint cache upon 100% successful ingestion."""
-    try:
-        if cache_path.exists():
-            cache_path.unlink()
-            print(
-                f"[CACHE] Ingestion complete. Cleaned up checkpoint: {cache_path.name}"
-            )
-    except Exception as e:
-        print(f"[WARNING] Could not delete checkpoint {cache_path}: {e}")
-
-
-EXTRACTED_DIR = Path(__file__).resolve().parents[2] / "data" / "extracted"
-
-
-def get_extracted_path(file_path: str) -> Path:
-    """Returns the permanent extracted dataset path (data/extracted/<clean_stem>.json)."""
-    EXTRACTED_DIR.mkdir(parents=True, exist_ok=True)
-    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
-    return EXTRACTED_DIR / f"{clean_stem}.json"
-
-
-def save_extracted_dataset(file_path: str, pages: list[dict]) -> Path:
-    """Saves the final extracted textbook pages permanently to data/extracted/<clean_stem>.json."""
-    out_path = get_extracted_path(file_path)
-    temp_path = out_path.with_suffix(".tmp")
-    with open(temp_path, "w", encoding="utf-8") as f:
-        json.dump(pages, f, ensure_ascii=False, indent=2)
-    temp_path.replace(out_path)
-    print(
-        f"\n[DATASET] Saved permanent textbook dataset ({len(pages)} pages) to: {out_path}"
-    )
-    return out_path
-
-
-def load_extracted_dataset(file_path: str) -> list[dict] | None:
-    """Loads permanent extracted dataset if it already exists."""
-    out_path = get_extracted_path(file_path)
-    if out_path.exists():
-        try:
-            with open(out_path, "r", encoding="utf-8") as f:
-                pages = json.load(f)
-                if isinstance(pages, list) and len(pages) > 0:
-                    return pages
-        except Exception as e:
-            print(f"[WARNING] Could not load extracted dataset from {out_path}: {e}")
-    return None
+# ==============================================================================
+# Parser and Prepare Textbook function
+# ==============================================================================
 
 
 def parse_and_prepare_textbook(
@@ -173,7 +90,6 @@ def parse_and_prepare_textbook(
     # Step 1: Pre-Scan Watermarks & Repeating Headers/Footers
     # ------------------------------------------------------------------
     watermark_xrefs = find_watermark_xrefs(doc)
-    detect_repeating_headers_footers(doc)
 
     # ------------------------------------------------------------------
     # Step 2: Extract Table of Contents (Bookmarks -> Groq Fallback)

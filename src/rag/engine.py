@@ -1,1 +1,0 @@
-import qdrant_client

@@ -42,7 +42,7 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
 # 6. Create a function to initialize the database
 async def init_db():
     """Creates all database tables defined in Base models if they don't exist."""
-    import rag.db.models  # noqa: F401 - Ensure models are registered in Base.metadata
+    import db.models  # noqa: F401 - Ensure models are registered in Base.metadata
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

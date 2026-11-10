@@ -11,16 +11,17 @@ import pymupdf
 import pymupdf4llm
 from dotenv import load_dotenv
 
-from rag.config import GEMINI_API_URL, get_gemini_api_key
+from rag.core.config import GEMINI_API_URL, get_gemini_api_key
 from rag.prompts import gemini_toc_prompt
 
 # Ensure environment variables are loaded
-ROOT_DIR = Path(__file__).resolve().parents[2]
+ROOT_DIR = Path(__file__).resolve().parents[3]
 load_dotenv(ROOT_DIR / ".env")
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
 # Configurable Parser Parameters (Easily tunable)
-# ---------------------------------------------------------------------------
+# ==============================================================================
+
 MAX_TOC_SEARCH_PAGES = 25  # Max early pages to scan for Contents
 TOC_EXTRA_PAGES = 2  # Extra pages to capture after "Contents" header (3 pages total)
 WATERMARK_REPEAT_THRESHOLD = 5  # XREFs appearing on >= 5 pages are watermarks
@@ -30,7 +31,11 @@ HEADER_MARGIN = 40  # Points from page top to inspect for running headers
 FOOTER_MARGIN = 40  # Points from page bottom to inspect for footers
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Find Repeating Watermarks
+# ==============================================================================
+
+
 def find_watermark_xrefs(
     doc: pymupdf.Document, threshold: int = WATERMARK_REPEAT_THRESHOLD
 ) -> set[int]:
@@ -53,46 +58,11 @@ def find_watermark_xrefs(
     return watermark_xrefs  # as a set
 
 
-# ---------------------------------------------------------------------------
-def detect_repeating_headers_footers(
-    doc: pymupdf.Document, sample_pages: int = 15
-) -> tuple[set[str], set[str]]:
-    """
-    Scans the top and bottom margins of early pages to find recurring running headers/footers.
-    Lines appearing on >= 3 consecutive pages are classified as headers/footers.
-    """
-    header_counts = Counter()
-    footer_counts = Counter()
-    mid_start = len(doc) // 2
-    pages_to_check = min(sample_pages, len(doc) - mid_start)
-
-    for p_idx in range(pages_to_check):
-        target_idx = mid_start + p_idx
-        if target_idx >= len(doc):
-            break
-        page = doc[target_idx]
-        p_height = page.rect.height
-        try:
-            blocks = page.get_text("blocks")
-            for b in blocks:
-                b_text = b[4].strip()
-                if not b_text or len(b_text) > 120:
-                    continue
-                # Top header zone
-                if b[1] < HEADER_MARGIN:
-                    header_counts[b_text] += 1
-                # Bottom footer zone
-                elif b[3] > (p_height - FOOTER_MARGIN):
-                    footer_counts[b_text] += 1
-        except Exception:
-            continue
-
-    repeating_headers = {text for text, count in header_counts.items() if count >= 3}
-    repeating_footers = {text for text, count in footer_counts.items() if count >= 3}
-    return repeating_headers, repeating_footers
+# ==============================================================================
+# Find Table of Contents
+# ==============================================================================
 
 
-# ---------------------------------------------------------------------------
 def find_toc_start_page(
     doc: pymupdf.Document, max_search_pages: int = MAX_TOC_SEARCH_PAGES
 ) -> int | None:
@@ -139,7 +109,11 @@ def find_toc_start_page(
     return None
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Extract Contents From Found Table of Contents
+# ==============================================================================
+
+
 def extract_table_of_contents(
     doc: pymupdf.Document,
     max_search_pages: int = MAX_TOC_SEARCH_PAGES,
@@ -172,7 +146,14 @@ def extract_table_of_contents(
                 early_text = doc[p_idx].get_text()[:250].lower()
                 if any(
                     kw in early_text
-                    for kw in ["chapter 1", "unit 1", "unit 13", "13.1", "1.1", "lesson 1"]
+                    for kw in [
+                        "chapter 1",
+                        "unit 1",
+                        "unit 13",
+                        "13.1",
+                        "1.1",
+                        "lesson 1",
+                    ]
                 ):
                     break
             except Exception:
@@ -315,7 +296,11 @@ def extract_table_of_contents(
     return valid_chapters, toc_start_page
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Page Classification
+# ==============================================================================
+
+
 def classify_page(
     page: pymupdf.Page,
     watermark_xrefs: set[int],
@@ -387,7 +372,11 @@ def classify_page(
     }
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Unicode Normalization
+# ==============================================================================
+
+
 def clean_text(text: str) -> str:
     """Applies Unicode normalization (NFKD) and cleans ghost spaces & soft hyphens."""
     if not text:
@@ -397,7 +386,11 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Extract Book page Number
+# ==============================================================================
+
+
 def extract_printed_page_number(page: pymupdf.Page) -> int | None:
     """
     Extracts the printed book page number from the page:
@@ -463,7 +456,11 @@ def extract_printed_page_number(page: pymupdf.Page) -> int | None:
     return None
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Conver text only pages to Markdown
+# ==============================================================================
+
+
 def extract_digital_page_markdown(doc: pymupdf.Document, page: pymupdf.Page) -> str:
     """
     Extracts text-only pages cleanly to Markdown using pymupdf4llm,
@@ -485,7 +482,11 @@ def extract_digital_page_markdown(doc: pymupdf.Document, page: pymupdf.Page) -> 
         return ""
 
 
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# Map pages to chapter with TOC
+# ==============================================================================
+
+
 def map_page_to_chapter(
     book_page: int | None,
     pdf_page: int,
@@ -514,3 +515,103 @@ def map_page_to_chapter(
             return item.get("chapter_number"), item.get("title")
 
     return None, None
+
+
+# ==============================================================================
+# Create & Delete Checkpoint path
+# ==============================================================================
+
+CACHE_DIR = Path(__file__).resolve().parents[3] / "data" / "cache"
+
+
+def get_checkpoint_path(file_path: str) -> Path:
+    """Returns the JSON checkpoint cache path for a given textbook file."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
+    return CACHE_DIR / f"{clean_stem}_checkpoint.json"
+
+
+def load_checkpoint(cache_path: Path) -> dict[int, dict]:
+    """Loads checkpoint cache. Returns dict of {pdf_page: page_dict}."""
+    if not cache_path.exists():
+        return {}
+    try:
+        with open(cache_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            pages = data.get("pages", [])
+            return {p["pdf_page"]: p for p in pages if "pdf_page" in p}
+    except Exception as e:
+        print(f"[WARNING] Could not read checkpoint cache: {e}. Starting fresh.")
+        return {}
+
+
+def save_checkpoint(
+    cache_path: Path, pages: list[dict], file_path: str, total_pages: int
+):
+    """Saves current extracted pages to checkpoint cache."""
+    try:
+        data = {
+            "document_name": Path(file_path).name,
+            "total_pages": total_pages,
+            "completed_count": len(pages),
+            "pages": pages,
+        }
+        temp_path = cache_path.with_suffix(".tmp")
+        with open(temp_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        temp_path.replace(cache_path)
+    except Exception as e:
+        print(f"[WARNING] Failed to write checkpoint cache: {e}")
+
+
+def remove_checkpoint(cache_path: Path):
+    """Removes checkpoint cache upon 100% successful ingestion."""
+    try:
+        if cache_path.exists():
+            cache_path.unlink()
+            print(
+                f"[CACHE] Ingestion complete. Cleaned up checkpoint: {cache_path.name}"
+            )
+    except Exception as e:
+        print(f"[WARNING] Could not delete checkpoint {cache_path}: {e}")
+
+
+# ==============================================================================
+# Create Extracted file path
+# ==============================================================================
+
+EXTRACTED_DIR = Path(__file__).resolve().parents[2] / "data" / "extracted"
+
+
+def get_extracted_path(file_path: str) -> Path:
+    """Returns the permanent extracted dataset path (data/extracted/<clean_stem>.json)."""
+    EXTRACTED_DIR.mkdir(parents=True, exist_ok=True)
+    clean_stem = re.sub(r"[^\w\-]", "_", Path(file_path).stem)
+    return EXTRACTED_DIR / f"{clean_stem}.json"
+
+
+def save_extracted_dataset(file_path: str, pages: list[dict]) -> Path:
+    """Saves the final extracted textbook pages permanently to data/extracted/<clean_stem>.json."""
+    out_path = get_extracted_path(file_path)
+    temp_path = out_path.with_suffix(".tmp")
+    with open(temp_path, "w", encoding="utf-8") as f:
+        json.dump(pages, f, ensure_ascii=False, indent=2)
+    temp_path.replace(out_path)
+    print(
+        f"\n[DATASET] Saved permanent textbook dataset ({len(pages)} pages) to: {out_path}"
+    )
+    return out_path
+
+
+def load_extracted_dataset(file_path: str) -> list[dict] | None:
+    """Loads permanent extracted dataset if it already exists."""
+    out_path = get_extracted_path(file_path)
+    if out_path.exists():
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                pages = json.load(f)
+                if isinstance(pages, list) and len(pages) > 0:
+                    return pages
+        except Exception as e:
+            print(f"[WARNING] Could not load extracted dataset from {out_path}: {e}")
+    return None

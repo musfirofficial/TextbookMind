@@ -1,14 +1,13 @@
 import base64
-import sys
 import time
 from pathlib import Path
 
 import httpx
 from dotenv import load_dotenv
 
-from rag.config import GEMINI_API_URL, get_gemini_api_key
-from rag.exceptions import ConfigError, QuotaExceededError, VisionAPIError
-from rag.prompts import vision_prompt
+from ..core.config import GEMINI_API_URL, get_gemini_api_key
+from ..exceptions import ConfigError, QuotaExceededError, VisionAPIError
+from ..prompts import vision_prompt
 
 # Ensure environment variables are loaded
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -66,7 +65,7 @@ def transcribe_page_with_gemini(
             if response.status_code == 429:
                 msg = f"API quota or rate limit exceeded (HTTP 429) on page {page_num}."
                 print(
-                    f"\n{'='*60}\n[GEMINI ERROR] {msg}\nIngestion stopped to protect your API account.\n{'='*60}\n"
+                    f"\n{'=' * 60}\n[GEMINI ERROR] {msg}\nIngestion stopped to protect your API account.\n{'=' * 60}\n"
                 )
                 raise QuotaExceededError(msg)
 
@@ -74,7 +73,7 @@ def transcribe_page_with_gemini(
             if response.status_code in (400, 401, 403):
                 msg = f"Gemini authentication failed (HTTP {response.status_code}) on page {page_num}."
                 print(
-                    f"\n{'='*60}\n[GEMINI ERROR] {msg}\nPlease check that your GEMINI_API_KEY in .env is valid and active.\n{'='*60}\n"
+                    f"\n{'=' * 60}\n[GEMINI ERROR] {msg}\nPlease check that your GEMINI_API_KEY in .env is valid and active.\n{'=' * 60}\n"
                 )
                 raise ConfigError(msg)
 
@@ -94,7 +93,7 @@ def transcribe_page_with_gemini(
             # 4. Handle other HTTP Errors
             if response.status_code != 200:
                 msg = f"Gemini request failed with status {response.status_code} on page {page_num}: {response.text[:200]}"
-                print(f"\n{'='*60}\n[GEMINI ERROR] {msg}\n{'='*60}\n")
+                print(f"\n{'=' * 60}\n[GEMINI ERROR] {msg}\n{'=' * 60}\n")
                 raise VisionAPIError(msg)
 
             # 5. Extract Text
@@ -119,5 +118,5 @@ def transcribe_page_with_gemini(
                 time.sleep(backoff)
             else:
                 msg = f"Failed to connect to Gemini API on page {page_num} after {max_retries} attempts: {exc}"
-                print(f"\n{'='*60}\n[NETWORK ERROR] {msg}\n{'='*60}\n")
+                print(f"\n{'=' * 60}\n[NETWORK ERROR] {msg}\n{'=' * 60}\n")
                 raise VisionAPIError(msg) from exc

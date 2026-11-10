@@ -4,8 +4,8 @@ from collections.abc import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from rag.db.models import TextBook
-from rag.schema.textbook import TextBookCreate
+from db.models import TextBook
+from schema.textbook import TextBookCreate
 
 
 async def create_textbook(
