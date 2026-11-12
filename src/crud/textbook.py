@@ -4,8 +4,8 @@ from collections.abc import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.models import TextBook
-from schema.textbook import TextBookCreate
+from ..db.models import TextBook
+from ..schema.textbook import TextBookCreate
 
 
 async def create_textbook(
@@ -60,5 +60,3 @@ async def get_textbook_by_title(
     stmt = select(TextBook).where(TextBook.title == title)
     result = await db.execute(stmt)
     return result.scalar_one_or_none()
-
-

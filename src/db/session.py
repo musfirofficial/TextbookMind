@@ -1,15 +1,15 @@
 import os
 from collections.abc import AsyncGenerator
-from pathlib import Path
 
 from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
-# 1. Load environment variables from .env file
-load_dotenv()
+from ..rag.core.config import ROOT_DIR
 
-ROOT_DIR = Path(__file__).resolve().parents[3]
+# 1. Load environment variables from .env file
+
+
 load_dotenv(ROOT_DIR / ".env")
 
 DEFAULT_DB_PATH = ROOT_DIR / "data" / "textbookmind.db"

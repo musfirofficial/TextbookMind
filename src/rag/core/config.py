@@ -3,14 +3,19 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from groq import Groq as NativeGroqClient
-from llama_index.core import Settings
-from llama_index.embeddings.fastembed import FastEmbedEmbedding
-from llama_index.llms.groq import Groq as LlamaGroq
 
 from ..exceptions import ConfigError
 
-# Project root is 3 levels up from src/rag/core
+# ==============================================================================
+# # Paths
+# ==============================================================================
+
+
 ROOT_DIR = Path(__file__).resolve().parents[3]
+DATA_DIR = ROOT_DIR / "data"
+MODEL_CACHE_DIR = ROOT_DIR / ".model_cache"
+QDRANT_STORAGE_PATH = DATA_DIR / "qdrant_db"
+
 load_dotenv(ROOT_DIR / ".env")
 
 model_cache_path = ROOT_DIR / ".model_cache"
@@ -18,8 +23,20 @@ model_cache_path.mkdir(exist_ok=True)
 
 
 # ==============================================================================
+# Embedding Model Constants & Collection name
+# ==============================================================================
+
+
+DENSE_MODEL_NAME = "BAAI/bge-small-en-v1.5"
+SPARSE_MODEL_NAME = "Qdrant/bm25"
+DEFAULT_COLLECTION_NAME = "textbooks"
+
+
+# ==============================================================================
 # Configure Gemini for Vision
 # ==============================================================================
+
+
 GEMINI_API_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
     "gemini-3.5-flash-lite:generateContent"
@@ -41,7 +58,7 @@ def get_gemini_api_key() -> str:
 # Configure Groq
 # ==============================================================================
 
-GROQ_TOC_MODEL = "qwen/qwen3.8-27b"
+
 GROQ_MAIN_MODEL = "openai/gpt-oss-120b"
 
 
@@ -58,53 +75,3 @@ def get_groq_api_key() -> str:
 def get_groq_client() -> NativeGroqClient:
     """Returns an authenticated native Groq client."""
     return NativeGroqClient(api_key=get_groq_api_key())
-
-
-# ==============================================================================
-# Configure Fast Embedding
-# ==============================================================================
-
-
-def get_fastembed_config():
-    Settings.embed_model = FastEmbedEmbedding(
-        model_name="BAAI/bge-small-en-v1.5",
-        max_length=512,
-        threads=4,
-        cache_dir=str(model_cache_path),
-    )
-
-
-# ==============================================================================
-# Initialize LlamaIndex with Groq LLM and FastEmbed
-# ==============================================================================
-
-
-def init_llama_index():
-
-    # 1. Configure Groq LLM
-    Settings.llm = LlamaGroq(
-        model=GROQ_MAIN_MODEL,
-        api_key=get_groq_api_key(),
-        temperature=0.2,
-    )
-
-    # 2. Configure FastEmbed
-    Settings.embed_model = FastEmbedEmbedding(
-        model_name="BAAI/bge-small-en-v1.5",
-        max_length=512,
-        threads=4,
-        cache_dir=str(model_cache_path),
-    )
-
-    print(f"Global LlamaIndex Settings Initialized. Cache: {model_cache_path}")
-
-
-# ==============================================================================
-# Config Summarizing LLM for Harness
-# ==============================================================================
-def get_condense_llm():
-    return LlamaGroq(
-        model="qwen/qwen3.8-27b",
-        api_key=get_groq_api_key(),
-        temperature=0.1,  # Low temperature for strict factual rewriting
-    )

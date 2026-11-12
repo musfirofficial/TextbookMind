@@ -1,17 +1,11 @@
 import base64
 import time
-from pathlib import Path
 
 import httpx
-from dotenv import load_dotenv
 
 from ..core.config import GEMINI_API_URL, get_gemini_api_key
 from ..exceptions import ConfigError, QuotaExceededError, VisionAPIError
 from ..prompts import vision_prompt
-
-# Ensure environment variables are loaded
-ROOT_DIR = Path(__file__).resolve().parents[2]
-load_dotenv(ROOT_DIR / ".env")
 
 VISION_PROMPT = vision_prompt()
 

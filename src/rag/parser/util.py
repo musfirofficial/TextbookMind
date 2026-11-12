@@ -9,14 +9,9 @@ from pathlib import Path
 import httpx
 import pymupdf
 import pymupdf4llm
-from dotenv import load_dotenv
 
-from rag.core.config import GEMINI_API_URL, get_gemini_api_key
+from rag.core.config import GEMINI_API_URL, ROOT_DIR, get_gemini_api_key
 from rag.prompts import gemini_toc_prompt
-
-# Ensure environment variables are loaded
-ROOT_DIR = Path(__file__).resolve().parents[3]
-load_dotenv(ROOT_DIR / ".env")
 
 # ==============================================================================
 # Configurable Parser Parameters (Easily tunable)
@@ -521,7 +516,7 @@ def map_page_to_chapter(
 # Create & Delete Checkpoint path
 # ==============================================================================
 
-CACHE_DIR = Path(__file__).resolve().parents[3] / "data" / "cache"
+CACHE_DIR = ROOT_DIR / "data" / "cache"
 
 
 def get_checkpoint_path(file_path: str) -> Path:
@@ -580,7 +575,7 @@ def remove_checkpoint(cache_path: Path):
 # Create Extracted file path
 # ==============================================================================
 
-EXTRACTED_DIR = Path(__file__).resolve().parents[2] / "data" / "extracted"
+EXTRACTED_DIR = ROOT_DIR / "data" / "extracted"
 
 
 def get_extracted_path(file_path: str) -> Path:

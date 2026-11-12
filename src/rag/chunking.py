@@ -6,7 +6,9 @@ from llama_index.core import Document
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.schema import TextNode
 
-Source_folder = Path(__file__).resolve().parents[2] / "data" / "extracted"
+from .core.config import ROOT_DIR
+
+SOURCE_FOLDER = ROOT_DIR / "data" / "extracted"
 
 
 def create_chunks_from_dataset(
@@ -99,4 +101,4 @@ def create_chunks_from_dataset(
 
 
 # if __name__ == "__main__":
-    # create_chunks_from_dataset(dataset_path="data/extracted/SCIENCE_G-10_P1_E.json")
+# create_chunks_from_dataset(dataset_path="data/extracted/SCIENCE_G-10_P1_E.json")

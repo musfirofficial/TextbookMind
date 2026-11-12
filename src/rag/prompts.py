@@ -1,3 +1,49 @@
+# ==============================================================================
+# Prompt for extract TOC in a fixed JSON schema
+# ==============================================================================
+
+
+def gemini_toc_prompt() -> str:
+    return """You are an academic textbook table-of-contents extractor.
+Analyze the provided Table of Contents page images.
+Extract all main chapters/units into a valid JSON array of objects with the exact schema:
+[
+  {"chapter_number": 1, "title": "Chemical basis of life", "start_page": 1, "end_page": 22}
+]
+
+Rules:
+1. start_page and end_page MUST be the printed BOOK page numbers shown in the Table of Contents (NOT the PDF file page numbers).
+2. If end_page is not explicitly shown in the Table of Contents, calculate it as (next chapter start_page - 1). For the last chapter, estimate it reasonably based on total pages.
+3. Only extract top-level chapters/units (e.g., Chapter 1, 2, 3...). Do not create top-level entries for sub-sections (like 1.1, 1.2), unless the book is organized solely by units.
+4. chapter_number, start_page, and end_page MUST be integers.
+5. Return ONLY the valid JSON array (e.g. inside ```json ... ``` or as raw JSON). Do not include introductory text, conversational remarks, or explanations.
+"""
+
+
+# ==============================================================================
+# Prompt to vision modal to extract meaning from images and tables
+# ==============================================================================
+
+
+def vision_prompt():
+    return """You are an expert academic document transcription tool.
+Transcribe this textbook page into clean, structured Markdown following natural human reading order.
+
+Rules:
+1. TABLES: Convert all tables into clean GitHub-flavored Markdown tables with descriptive headers. Preserve all numerical values exactly.
+2. FIGURES & DIAGRAMS: For photos, maps, diagrams, flowcharts, or vector charts, insert an anchor block:
+   [FIGURE: <caption or title if present> - <concise description of what the visual illustrates>]
+3. FORMULAS: Format all mathematical formulas and scientific symbols in valid LaTeX ($ for inline, $$ on own line for block display).
+4. WATERMARKS: Completely ignore background watermarks, stamps (e.g., 'SAMPLE', 'DRAFT'), and translucent publisher background seals.
+5. NO CHAT: Output ONLY the transcribed Markdown content without any greeting, explanation, or conversational filler.
+"""
+
+
+# ==============================================================================
+# Prompt for LLM (main)
+# ==============================================================================
+
+
 def main_prompt():
     return r"""You are an expert academic tutor dedicated to helping students understand their textbook material with scientific precision, pedagogical clarity, and rigorous formatting.
     Your task is to answer the student's question strictly using the provided textbook context blocks.
@@ -35,59 +81,3 @@ def main_prompt():
     2. Keep explanations structured, encouraging, and easy for high school and university students to study from.
     Question: {query_str}
     Tutor's Answer:"""
-
-
-def condense_prompt():
-    return r"""Given the following conversation between a user and an AI assistant, and a follow-up question from the user,
-    Do NOT answer the question. Just output the rephrased standalone question and nothing else.\n\n
-    Chat History:\n{chat_history}\n\n
-    Follow-up Question: {question}\n\n
-    Standalone Question:"""
-
-
-def toc_prompt(raw_toc_text: str):
-    return f"""You are an academic textbook table-of-contents parser.
-Extract all chapters/units from this raw text into a valid JSON array of objects with the exact schema:
-[
-  {{"chapter_number": 1, "title": "Industrial Revolution", "start_page": 1, "end_page": 18}}
-]
-
-Rules:
-- Return ONLY valid raw JSON. No markdown code blocks (no ```json), no explanation text before or after.
-- chapter_number, start_page, and end_page MUST be integers.
-- If end_page is not specified, calculate it as (next chapter's start_page - 1).
-
-Raw Text:
-{raw_toc_text}
-"""
-
-
-def gemini_toc_prompt() -> str:
-    return """You are an academic textbook table-of-contents extractor.
-Analyze the provided Table of Contents page images.
-Extract all main chapters/units into a valid JSON array of objects with the exact schema:
-[
-  {"chapter_number": 1, "title": "Chemical basis of life", "start_page": 1, "end_page": 22}
-]
-
-Rules:
-1. start_page and end_page MUST be the printed BOOK page numbers shown in the Table of Contents (NOT the PDF file page numbers).
-2. If end_page is not explicitly shown in the Table of Contents, calculate it as (next chapter start_page - 1). For the last chapter, estimate it reasonably based on total pages.
-3. Only extract top-level chapters/units (e.g., Chapter 1, 2, 3...). Do not create top-level entries for sub-sections (like 1.1, 1.2), unless the book is organized solely by units.
-4. chapter_number, start_page, and end_page MUST be integers.
-5. Return ONLY the valid JSON array (e.g. inside ```json ... ``` or as raw JSON). Do not include introductory text, conversational remarks, or explanations.
-"""
-
-
-def vision_prompt():
-    return """You are an expert academic document transcription tool.
-Transcribe this textbook page into clean, structured Markdown following natural human reading order.
-
-Rules:
-1. TABLES: Convert all tables into clean GitHub-flavored Markdown tables with descriptive headers. Preserve all numerical values exactly.
-2. FIGURES & DIAGRAMS: For photos, maps, diagrams, flowcharts, or vector charts, insert an anchor block:
-   [FIGURE: <caption or title if present> - <concise description of what the visual illustrates>]
-3. FORMULAS: Format all mathematical formulas and scientific symbols in valid LaTeX ($ for inline, $$ on own line for block display).
-4. WATERMARKS: Completely ignore background watermarks, stamps (e.g., 'SAMPLE', 'DRAFT'), and translucent publisher background seals.
-5. NO CHAT: Output ONLY the transcribed Markdown content without any greeting, explanation, or conversational filler.
-"""
