@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 from typing import Any
 
 from llama_index.core.schema import TextNode
@@ -12,9 +11,13 @@ from .embedding import (
     prepare_qdrant_points,
 )
 
+# ==============================================================================
+# Create or Recreate Qdrant Client
+# ==============================================================================
+
 
 def get_qdrant_client(
-    path: str | None = None,
+    path: str | None = QDRANT_STORAGE_PATH,
     url: str | None = None,
     api_key: str | None = None,
 ) -> QdrantClient:
@@ -31,9 +34,14 @@ def get_qdrant_client(
     if url or env_url:
         return QdrantClient(url=url or env_url, api_key=api_key or env_api_key)
 
-    target_path = Path(path) if path else QDRANT_STORAGE_PATH
-    target_path.mkdir(parents=True, exist_ok=True)
-    return QdrantClient(path=str(target_path))
+    if path:
+        path.mkdir(parents=True, exist_ok=True)
+    return QdrantClient(path=str(path))
+
+
+# ==============================================================================
+# Create a collection in Qdrant Vector base
+# ==============================================================================
 
 
 def init_textbook_collection(
@@ -74,6 +82,7 @@ def init_textbook_collection(
             ("grade", models.PayloadSchemaType.INTEGER),
             ("subject", models.PayloadSchemaType.KEYWORD),
             ("medium", models.PayloadSchemaType.KEYWORD),
+            ("edition", models.PayloadSchemaType.KEYWORD),
             ("chapter_number", models.PayloadSchemaType.INTEGER),
             ("book_page", models.PayloadSchemaType.INTEGER),
             ("document_name", models.PayloadSchemaType.KEYWORD),
@@ -85,6 +94,11 @@ def init_textbook_collection(
                 field_schema=field_type,
             )
         print(f"[QDRANT] Payload indexes created for: {[f[0] for f in filter_fields]}")
+
+
+# ==============================================================================
+# Embed and store chunks
+# ==============================================================================
 
 
 def upsert_chunks(
@@ -122,6 +136,11 @@ def upsert_chunks(
         f"[QDRANT SUCCESS] Successfully indexed {len(points)} points into '{collection_name}'."
     )
     return len(points)
+
+
+# ==============================================================================
+# Perform Hybrid search for given query
+# ==============================================================================
 
 
 def hybrid_search(
