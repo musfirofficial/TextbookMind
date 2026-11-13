@@ -1,12 +1,12 @@
 from typing import Any
 
-from src.rag.core.config import (
+from rag.core.config import (
     DEFAULT_COLLECTION_NAME,
     GROQ_MAIN_MODEL,
     get_groq_client,
 )
-from src.rag.core.prompts import main_prompt
-from src.rag.vector_store import get_qdrant_client, hybrid_search
+from rag.core.prompts import main_prompt
+from rag.vector_store import get_qdrant_client, hybrid_search
 
 
 def _format_context(points: list) -> tuple[str, list[dict]]:
