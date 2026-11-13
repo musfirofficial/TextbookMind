@@ -11,7 +11,7 @@ import pymupdf
 import pymupdf4llm
 
 from rag.core.config import GEMINI_API_URL, ROOT_DIR, get_gemini_api_key
-from rag.prompts import gemini_toc_prompt
+from rag.core.prompts import gemini_toc_prompt
 
 # ==============================================================================
 # Configurable Parser Parameters (Easily tunable)

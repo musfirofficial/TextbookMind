@@ -1,0 +1,4332 @@
+[
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 1.1 basic concepts about businesses?",
+    "expected_keyword": "basic",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is business concept?",
+    "expected_keyword": "business",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are business objectives?",
+    "expected_keyword": "business",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are consumer needs and wants?",
+    "expected_keyword": "consumer",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are needs?",
+    "expected_keyword": "needs",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 2.1 business environment?",
+    "expected_keyword": "business",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      14
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "How is classification of business environment classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      14
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is internal environment?",
+    "expected_keyword": "internal",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      15
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is external environment?",
+    "expected_keyword": "external",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      15
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are customers?",
+    "expected_keyword": "customers",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      15
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "How is 3.1 basic information on the types of business organizations classified?",
+    "expected_keyword": "basic",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      24
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "How is classification of business organizations classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      24
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "How is classification of business organizations based on the ownership classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      24
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are private sector business organizations?",
+    "expected_keyword": "private",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      25
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are public sector business organizations?",
+    "expected_keyword": "public",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      25
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 4.1 accounting?",
+    "expected_keyword": "accounting",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      48
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 4.2 objectives and need of accounting?",
+    "expected_keyword": "objectives",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      48
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 4.3 business transactions?",
+    "expected_keyword": "business",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      49
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 4.4 assets, liabilities, equity, income and expenses, that arise from various transactions?",
+    "expected_keyword": "assets",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      49
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are assets?",
+    "expected_keyword": "assets",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      50
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 5.1  accounting equation?",
+    "expected_keyword": "accounting",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      58
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 5.2  construction of accounting equation?",
+    "expected_keyword": "construction",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      58
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is how do business transactions affect the accounting equation?",
+    "expected_keyword": "business",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      59
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is liabilities -?",
+    "expected_keyword": "liabilities",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      61
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is situations that change the equity?",
+    "expected_keyword": "situations",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      66
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are dual impact of business transactions?",
+    "expected_keyword": "dual",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      70
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is double entry system?",
+    "expected_keyword": "double",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      70
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is account?",
+    "expected_keyword": "account",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      70
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "How is 6.4 types of accounts classified?",
+    "expected_keyword": "types",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      71
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are asset accounts?",
+    "expected_keyword": "asset",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      71
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are introduction to prime entry books?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      78
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 7.2  necessity of prime entry books?",
+    "expected_keyword": "necessity",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      79
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 7.3  the source documents?",
+    "expected_keyword": "source",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      79
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is source documents include the following details.?",
+    "expected_keyword": "source",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      79
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are uses of source documents?",
+    "expected_keyword": "uses",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      80
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is the cash book and 8 the petty cash book?",
+    "expected_keyword": "cash",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      83
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is the cash book and?",
+    "expected_keyword": "cash",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      83
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is the petty cash book?",
+    "expected_keyword": "petty",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      83
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 8.1 cash book?",
+    "expected_keyword": "cash",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      84
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is examples for sources of cash receipts of a business?",
+    "expected_keyword": "examples",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      84
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 9.1 bank account?",
+    "expected_keyword": "bank",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      112
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 01.  deposit of cash in the bank?",
+    "expected_keyword": "deposit",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      112
+    ],
+    "filter": {
+      "chapter_number": 9
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 02.  deposit of cheques received by the business?",
+    "expected_keyword": "deposit",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      112
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is observe the following cheque deposit slip?",
+    "expected_keyword": "observe",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      113
+    ],
+    "filter": {
+      "chapter_number": 9
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What are 03. issuing of cheques?",
+    "expected_keyword": "issuing",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      114
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is purchases journal?",
+    "expected_keyword": "purchases",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      134
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is sales journal?",
+    "expected_keyword": "sales",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      138
+    ],
+    "filter": {
+      "chapter_number": 10
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is required :- 10.3 general journal 01. prepare the sales journal using the following format.?",
+    "expected_keyword": "required",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      142
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 10.3 general journal examples :-?",
+    "expected_keyword": "general",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      142
+    ],
+    "filter": {
+      "chapter_number": 10
+    }
+  },
+  {
+    "document_name": "Business_and_Accounting_Studies_G-10_E",
+    "query": "What is 10.4  instant cash transactions through the electronic methods of technology.?",
+    "expected_keyword": "instant",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      144
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "How is classification of biblical books of the old testament classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is historical books of the bible?",
+    "expected_keyword": "historical",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is the holy bible and the living tradition of the church?",
+    "expected_keyword": "holy",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are acts of the apostles?",
+    "expected_keyword": "acts",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      5
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are the structure of the book of the acts of the apostles?",
+    "expected_keyword": "structure",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      5
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "How is 3 classification of epistles classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      7
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are purposes of the pauline epistles?",
+    "expected_keyword": "purposes",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      7
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is mother, come and see?",
+    "expected_keyword": "mother",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      7
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are colours?",
+    "expected_keyword": "colours",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      13
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are numbers?",
+    "expected_keyword": "numbers",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      13
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 4.  pseudonymous authorship?",
+    "expected_keyword": "pseudonymous",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      13
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is wisdom literature?",
+    "expected_keyword": "wisdom",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      16
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is family or tribal wisdom?",
+    "expected_keyword": "family",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      17
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is court wisdom?",
+    "expected_keyword": "court",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      17
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is peter’s speech on the day of pentecost and it’s outcome  (acts 2:14-41)?",
+    "expected_keyword": "peter",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      24
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is characteristics of the early christian community (acts 2:4247;4:32-37)?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      24
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is witness given by  st. stephen (acts 6:8-15)?",
+    "expected_keyword": "witness",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      25
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is the third missionary journey?",
+    "expected_keyword": "third",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      28
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is last days of st. paul?",
+    "expected_keyword": "last",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      29
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 2.  the church is holy?",
+    "expected_keyword": "church",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      35
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 3.  the church is catholic or universal?",
+    "expected_keyword": "church",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      35
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 4.  the church is apostolic?",
+    "expected_keyword": "church",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      36
+    ],
+    "filter": {
+      "chapter_number": 10
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is sri lankan catholic church?",
+    "expected_keyword": "lankan",
+    "expected_chapter": 11,
+    "expected_book_page": [
+      37
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is . before the portuguese period (before 1505 a.d.)?",
+    "expected_keyword": "portuguese",
+    "expected_chapter": 11,
+    "expected_book_page": [
+      37
+    ],
+    "filter": {
+      "chapter_number": 11
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 2. portuguese period  (1505 – 1658 a.d.)?",
+    "expected_keyword": "portuguese",
+    "expected_chapter": 11,
+    "expected_book_page": [
+      38
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is \\quad the holy eucharist?",
+    "expected_keyword": "quad",
+    "expected_chapter": 12,
+    "expected_book_page": [
+      44
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is characteristics of the holy eucharist?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 12,
+    "expected_book_page": [
+      44
+    ],
+    "filter": {
+      "chapter_number": 12
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is . holy eucharist is a sacrament?",
+    "expected_keyword": "holy",
+    "expected_chapter": 12,
+    "expected_book_page": [
+      44
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is there are four essential in the paschal meal:?",
+    "expected_keyword": "four",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      50
+    ],
+    "filter": {
+      "chapter_number": 13
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "How is the paschal meal in the new testament conducted?",
+    "expected_keyword": "paschal",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      51
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is washing of the feet and the commandment of love?",
+    "expected_keyword": "washing",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      51
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is 14 sacrifice of calvary?",
+    "expected_keyword": "sacrifice",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      55
+    ],
+    "filter": {
+      "chapter_number": 14
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "How is the sacrifices in the old testament conducted?",
+    "expected_keyword": "sacrifices",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      55
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "How is two types of offerings: classified?",
+    "expected_keyword": "types",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      55
+    ],
+    "filter": {
+      "chapter_number": 14
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is love of god?",
+    "expected_keyword": "love",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      64
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is first commandment?",
+    "expected_keyword": "first",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      64
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is faith?",
+    "expected_keyword": "faith",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      65
+    ],
+    "filter": {
+      "chapter_number": 16
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is the fourth commandment: honour your father and your mother?",
+    "expected_keyword": "fourth",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      75
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are duties and responsibilities of parents?",
+    "expected_keyword": "duties",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      77
+    ],
+    "filter": {
+      "chapter_number": 17
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are children’s duties and responsibilities?",
+    "expected_keyword": "children",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      77
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is fifth commandment?",
+    "expected_keyword": "fifth",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      82
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is sins against the 5<sup>th</sup> commandment?",
+    "expected_keyword": "sins",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      84
+    ],
+    "filter": {
+      "chapter_number": 18
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is sins against the 5?",
+    "expected_keyword": "sins",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      84
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is pure heart and chaste life?",
+    "expected_keyword": "pure",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      88
+    ],
+    "filter": {
+      "chapter_number": 19
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is (1) sixth commandment?",
+    "expected_keyword": "sixth",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      88
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is (2) ninth commandment?",
+    "expected_keyword": "ninth",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      88
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What are the sins against the $7^{\\text{th}}$ and $10^{\\text{th}}$ commandments?",
+    "expected_keyword": "sins",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      98
+    ],
+    "filter": {
+      "chapter_number": 20
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is let us live truthfully?",
+    "expected_keyword": "live",
+    "expected_chapter": 21,
+    "expected_book_page": [
+      100
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is bear witness to truth?",
+    "expected_keyword": "bear",
+    "expected_chapter": 21,
+    "expected_book_page": [
+      102
+    ],
+    "filter": {
+      "chapter_number": 21
+    }
+  },
+  {
+    "document_name": "CATHOLICISM_G-10_E",
+    "query": "What is the sins against the 8<sup>th</sup> commandment?",
+    "expected_keyword": "sins",
+    "expected_chapter": 21,
+    "expected_book_page": [
+      103
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is democratic governance?",
+    "expected_keyword": "democratic",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is introduction to democratic governance?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is the role of the state \n\n-?",
+    "expected_keyword": "role",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is responsibilities of citizen \n\n-?",
+    "expected_keyword": "responsibilities",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is responsibilities towards citizen \n\n-?",
+    "expected_keyword": "responsibilities",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is for free distribution?",
+    "expected_keyword": "free",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "How is types of democratic governance classified?",
+    "expected_keyword": "types",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is direct democracy?",
+    "expected_keyword": "direct",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is direct democracy \n\n-?",
+    "expected_keyword": "direct",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is indirect democracy?",
+    "expected_keyword": "indirect",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is importance of democracy as a system of governance?",
+    "expected_keyword": "importance",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is decentralisation and devolution of power?",
+    "expected_keyword": "decentralisation",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      29
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is introduction?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      29
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is power?",
+    "expected_keyword": "power",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "How is types of the power classified?",
+    "expected_keyword": "types",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is from the view point of economics,?",
+    "expected_keyword": "view",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is decentralization of power?",
+    "expected_keyword": "decentralization",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      31
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are devolution of powers?",
+    "expected_keyword": "devolution",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      32
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is characteristics of a unitary state?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      32
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are reasons for the devolution of power in modern states?",
+    "expected_keyword": "reasons",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      33
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are federal states?",
+    "expected_keyword": "federal",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      33
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is characteristics of a federal state?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      34
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is the multicultural society?",
+    "expected_keyword": "multicultural",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      53
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is religion \n\n-?",
+    "expected_keyword": "religion",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is language \n\n-?",
+    "expected_keyword": "language",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is knowledge \n\n-?",
+    "expected_keyword": "knowledge",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is clothes \n\n-?",
+    "expected_keyword": "clothes",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is food and drink \n\n-?",
+    "expected_keyword": "food",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is arts \n\n-?",
+    "expected_keyword": "arts",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is rules and \n\n-?",
+    "expected_keyword": "rules",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is faiths \n\n-?",
+    "expected_keyword": "faiths",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is customs \n\n-?",
+    "expected_keyword": "customs",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is ethics \n\n-?",
+    "expected_keyword": "ethics",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are economic systems and economic 04 relations?",
+    "expected_keyword": "economic",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      64
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are 4.1. basic economic problems and economic activities?",
+    "expected_keyword": "basic",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      64
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is economic systems and economic?",
+    "expected_keyword": "economic",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      64
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are relations?",
+    "expected_keyword": "relations",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      64
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is i. what is the technique to be applied??",
+    "expected_keyword": "technique",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      66
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is ii. which section does the production??",
+    "expected_keyword": "section",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      66
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is iii. for whom is it produced??",
+    "expected_keyword": "produced",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      66
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is 2 capital intensive?",
+    "expected_keyword": "capital",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      66
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is 2 labour intensive?",
+    "expected_keyword": "labour",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      66
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are the production factors and payments for them?",
+    "expected_keyword": "production",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      67
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is . land?",
+    "expected_keyword": "land",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      68
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is conflict resolution in a 05 democratic society?",
+    "expected_keyword": "conflict",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      89
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is individual’s mind which leads to conflict?",
+    "expected_keyword": "individual",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      89
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is directions to create mental peace?",
+    "expected_keyword": "directions",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      90
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What are basic reasons for conflicts?",
+    "expected_keyword": "basic",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      90
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is turn to religious activities \n\n-?",
+    "expected_keyword": "turn",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      90
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "CIVIC_G-10_E",
+    "query": "What is engage in psychological exercises \n\n-?",
+    "expected_keyword": "engage",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      90
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is nature?",
+    "expected_keyword": "nature",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>to the nile</u>?",
+    "expected_keyword": "nile",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>a bird came down the walk</u>?",
+    "expected_keyword": "bird",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is emily dickinson?",
+    "expected_keyword": "emily",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>the eagle (a fragment)</u>?",
+    "expected_keyword": "eagle",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is alfred lord tennyson?",
+    "expected_keyword": "alfred",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>to the  evening star</u>?",
+    "expected_keyword": "evening",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is william blake?",
+    "expected_keyword": "william",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is conflict?",
+    "expected_keyword": "conflict",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>war is kind</u>?",
+    "expected_keyword": "kind",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>the terrorist, he’s watching</u>?",
+    "expected_keyword": "terrorist",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is farewell to barn and stack and tree?",
+    "expected_keyword": "farewell",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      5
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>breakfast</u>?",
+    "expected_keyword": "breakfast",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      6
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is short stories and non-fiction?",
+    "expected_keyword": "short",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      20
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the <u>nightingale and the rose - oscar wilde</u>?",
+    "expected_keyword": "nightingale",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      20
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>an extract from ‘colin cowdrey lecture’</u> – ‘the lahore attack’?",
+    "expected_keyword": "extract",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>kumar sangakkara</u>?",
+    "expected_keyword": "kumar",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the lumber room - saki?",
+    "expected_keyword": "lumber",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      31
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is <u>an extract from “wave”</u> – a memoir of life after the tsunami <u>sonali deraniyagala</u>?",
+    "expected_keyword": "extract",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      37
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is drama?",
+    "expected_keyword": "drama",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      41
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is twilight of a crane – yu zuwa junji kinoshita?",
+    "expected_keyword": "twilight",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      41
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is fade out?",
+    "expected_keyword": "fade",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      62
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the bear - anton chekhov?",
+    "expected_keyword": "bear",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is translated by julius west.?",
+    "expected_keyword": "translated",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What are characters?",
+    "expected_keyword": "characters",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is luka.?",
+    "expected_keyword": "luka",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is popova.?",
+    "expected_keyword": "popova",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is [sighs]?",
+    "expected_keyword": "sighs",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      67
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is [with determination]?",
+    "expected_keyword": "determination",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      68
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is smirnov.?",
+    "expected_keyword": "smirnov",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      70
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is smirnov?",
+    "expected_keyword": "smirnov",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      74
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is [with heat]?",
+    "expected_keyword": "heat",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      78
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is poetry?",
+    "expected_keyword": "poetry",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      88
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is prose?",
+    "expected_keyword": "prose",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      88
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is novel?",
+    "expected_keyword": "novel",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      88
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is fond?",
+    "expected_keyword": "fond",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      59
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 1.1  concept of entrepreneurship?",
+    "expected_keyword": "concept",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is the story of sunimal?",
+    "expected_keyword": "story",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is let's try to understand the following characteristics of entrepreneurship from the character of sunimal.?",
+    "expected_keyword": "understand",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 1.3  specific importance of entrepreneurship?",
+    "expected_keyword": "specific",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      5
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 1.4  characteristics of entrepreneurship?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      7
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 01. creativity?",
+    "expected_keyword": "creativity",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      7
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is in the following diagram?",
+    "expected_keyword": "following",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      8
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are the factors that obstruct creativity?",
+    "expected_keyword": "factors",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      10
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are the mutual relationship between 2 entrepreneurship and businesses?",
+    "expected_keyword": "mutual",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      25
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is the mutual relationship between?",
+    "expected_keyword": "mutual",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      25
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are entrepreneurship and businesses?",
+    "expected_keyword": "entrepreneurship",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      25
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 2.1 introduction of business and businessman?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are 2.2 needs and wants?",
+    "expected_keyword": "needs",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 2.3 characteristics of business?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are characteristics?",
+    "expected_keyword": "characteristics",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is explanation?",
+    "expected_keyword": "explanation",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is the benefits of entrepreneurship?",
+    "expected_keyword": "benefits",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      38
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 3.1 benefits to the entrepreneur?",
+    "expected_keyword": "benefits",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      38
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is destiny rests upon his own self?",
+    "expected_keyword": "destiny",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      38
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are diversity in activities?",
+    "expected_keyword": "diversity",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      39
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is ability to contribute to the welfare of the society.?",
+    "expected_keyword": "ability",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      39
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are ability to use unused talents?",
+    "expected_keyword": "ability",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      39
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is ability to earn an attractive profit?",
+    "expected_keyword": "ability",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      40
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is self sufficiency?",
+    "expected_keyword": "self",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      40
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are entrepreneurship and small 4 scale businesses?",
+    "expected_keyword": "entrepreneurship",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      45
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is entrepreneurship and small?",
+    "expected_keyword": "entrepreneurship",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      45
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are scale businesses?",
+    "expected_keyword": "scale",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      45
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are 4.1  small scale businesses?",
+    "expected_keyword": "small",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      46
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 4.2 relationship between small scale businesses and entrepreneurship?",
+    "expected_keyword": "relationship",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      47
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 4.3 importance of small scale businesses for economic development?",
+    "expected_keyword": "importance",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      48
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are 4.4 strengths of small scale businesses?",
+    "expected_keyword": "strengths",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      49
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are 4.5 limitations of small scale businesses?",
+    "expected_keyword": "limitations",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      49
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is business environment 5?",
+    "expected_keyword": "business",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      59
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is business environment?",
+    "expected_keyword": "business",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      59
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 5.1  importance of studying the business environment?",
+    "expected_keyword": "importance",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      60
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is examples :-?",
+    "expected_keyword": "examples",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      60
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 5.2 classifying the business environment?",
+    "expected_keyword": "classifying",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      62
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is internal environment?",
+    "expected_keyword": "internal",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      62
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is external environment?",
+    "expected_keyword": "external",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      63
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 5.3 internal environment and its influence?",
+    "expected_keyword": "internal",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      63
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is introduction to business 6 start-up?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      77
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is this chapter discusses the following facts.?",
+    "expected_keyword": "discusses",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      77
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is introduction to business?",
+    "expected_keyword": "introduction",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      77
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is start-up?",
+    "expected_keyword": "start",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      77
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 6.1 important decisions that should be taken before starting a business?",
+    "expected_keyword": "important",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      78
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is decisions that should be taken when starting a business?",
+    "expected_keyword": "decisions",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      78
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 01. to which extent the person can dedicate for the business??",
+    "expected_keyword": "extent",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      78
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What is 02. on which product or service the business is based??",
+    "expected_keyword": "product",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      79
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are business ideas and 7 opportunities?",
+    "expected_keyword": "business",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      91
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "Entrepreneurial_Studies_G-10_E",
+    "query": "What are this chapter discusses the following facts?",
+    "expected_keyword": "discusses",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      91
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us build a healthy society?",
+    "expected_keyword": "build",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is concept of total health?",
+    "expected_keyword": "concept",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is suitable life style to maintain total health?",
+    "expected_keyword": "suitable",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are 1. good eating habits?",
+    "expected_keyword": "good",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 2. active life style and exercise?",
+    "expected_keyword": "active",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 3. maintaining appropriate  body mass index (bmi)?",
+    "expected_keyword": "maintaining",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us learn about development 2 through childhood?",
+    "expected_keyword": "learn",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      14
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is stages in childhood?",
+    "expected_keyword": "stages",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      14
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is points to know before becoming a mother.?",
+    "expected_keyword": "points",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      15
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is prenatal stage (in mother’s womb)?",
+    "expected_keyword": "prenatal",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      15
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is neonatal stage (from birth to one month)?",
+    "expected_keyword": "neonatal",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      16
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is physical and psycho-social needs in neonatal stage.?",
+    "expected_keyword": "physical",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      17
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us maintain correct posture <u>3</u>?",
+    "expected_keyword": "maintain",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are the bio mechanical factors related to posture?",
+    "expected_keyword": "mechanical",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      23
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 1. centre of gravity?",
+    "expected_keyword": "centre",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us maintain correct posture?",
+    "expected_keyword": "maintain",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 2. balance?",
+    "expected_keyword": "balance",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      25
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are the let us see how the above factors affect different postures?",
+    "expected_keyword": "factors",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      26
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us learn  about sports and outdoor activities 4?",
+    "expected_keyword": "learn",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      39
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 4.1  volleyball?",
+    "expected_keyword": "volleyball",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      39
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is skills related to volleyball?",
+    "expected_keyword": "skills",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      40
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is spiking?",
+    "expected_keyword": "spiking",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      40
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 1. hitting approach?",
+    "expected_keyword": "hitting",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      41
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is 2. take-off?",
+    "expected_keyword": "take",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      42
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are let us learn about athletics?",
+    "expected_keyword": "learn",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      81
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "How is classification of athletic events classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      81
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is track and field?",
+    "expected_keyword": "track",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      82
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is race walking?",
+    "expected_keyword": "race",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      82
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is road running?",
+    "expected_keyword": "road",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      82
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is cross-country running?",
+    "expected_keyword": "cross",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      82
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us adhere to rules, regulations and ethics in sports <u>6</u>?",
+    "expected_keyword": "adhere",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      111
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are rules and regulations in sports?",
+    "expected_keyword": "rules",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      111
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are the need for rules and regulations in sports?",
+    "expected_keyword": "need",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      111
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are 1.   maintaining ethics of sports?",
+    "expected_keyword": "maintaining",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      112
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are 2.  maintaining enthusiasm in sports?",
+    "expected_keyword": "maintaining",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      113
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are 3. maintaining dignity in sports?",
+    "expected_keyword": "maintaining",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      113
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us have nutritious food for healthy living <u>7</u>?",
+    "expected_keyword": "nutritious",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      127
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is the importance of  nutritious food?",
+    "expected_keyword": "importance",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      127
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is nutrients in food?",
+    "expected_keyword": "nutrients",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      128
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are macronutrients and micronutrients?",
+    "expected_keyword": "macronutrients",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      128
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are macronutrients?",
+    "expected_keyword": "macronutrients",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      128
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are micronutrients?",
+    "expected_keyword": "micronutrients",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      128
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is let us maintain a healthy body.?",
+    "expected_keyword": "maintain",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      151
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is digestive system?",
+    "expected_keyword": "digestive",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      151
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is digestion of food?",
+    "expected_keyword": "digestion",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      152
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is mouth?",
+    "expected_keyword": "mouth",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      152
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is teeth?",
+    "expected_keyword": "teeth",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      152
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What are salivary glands?",
+    "expected_keyword": "salivary",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      152
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is cardio vascular fitness?",
+    "expected_keyword": "cardio",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      173
+    ],
+    "filter": {
+      "chapter_number": 9
+    }
+  },
+  {
+    "document_name": "HEALTH_SCIENCE_G-10_E",
+    "query": "What is activities helpful in developing cardio vascular  fitness?",
+    "expected_keyword": "activities",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      173
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is biology?",
+    "expected_keyword": "biology",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is chemical basis of life 01?",
+    "expected_keyword": "chemical",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are carbohydrates?",
+    "expected_keyword": "carbohydrates",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are monosaccharides?",
+    "expected_keyword": "monosaccharides",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are disaccharides?",
+    "expected_keyword": "disaccharides",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      4
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is displacement?",
+    "expected_keyword": "displacement",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is scalar quantity?",
+    "expected_keyword": "scalar",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      24
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is vector quantity?",
+    "expected_keyword": "vector",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      24
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 160 m in the direction 70<sup>0</sup> from north to west.?",
+    "expected_keyword": "direction",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      25
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 160 m in the direction 70?",
+    "expected_keyword": "direction",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      25
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is structure of matter?",
+    "expected_keyword": "structure",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      52
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is chemistry 03?",
+    "expected_keyword": "chemistry",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      52
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is the planetary model of the atom?",
+    "expected_keyword": "planetary",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is assignment 3.1?",
+    "expected_keyword": "assignment",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": {
+      "chapter_number": 3
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is y atomic number?",
+    "expected_keyword": "atomic",
+    "expected_chapter": 3,
+    "expected_book_page": [
+      54
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "State and explain Newton’s laws of motion.",
+    "expected_keyword": "newton",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      84
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is physics 04?",
+    "expected_keyword": "physics",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      84
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are 4.1 nature of force and its effects?",
+    "expected_keyword": "nature",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      84
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is unbalanced force?",
+    "expected_keyword": "unbalanced",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      84
+    ],
+    "filter": {
+      "chapter_number": 4
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "State and explain Newton’s first law.",
+    "expected_keyword": "newton",
+    "expected_chapter": 4,
+    "expected_book_page": [
+      85
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is friction?",
+    "expected_keyword": "friction",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      98
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 5.1 nature of friction?",
+    "expected_keyword": "nature",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      98
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are 5.2   static, limiting and dynamic states of frictional forces?",
+    "expected_keyword": "static",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      99
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is items required : a block of wood weighing 60 n, a newton balance?",
+    "expected_keyword": "items",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      100
+    ],
+    "filter": {
+      "chapter_number": 5
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is procedure :?",
+    "expected_keyword": "procedure",
+    "expected_chapter": 5,
+    "expected_book_page": [
+      100
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 6.1 basic unit of life?",
+    "expected_keyword": "basic",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      110
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 6.2 concept of the cell?",
+    "expected_keyword": "concept",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      110
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are structure of cells?",
+    "expected_keyword": "structure",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      111
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is typical cell?",
+    "expected_keyword": "typical",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      112
+    ],
+    "filter": {
+      "chapter_number": 6
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is cell organelles and structures present in a cell?",
+    "expected_keyword": "cell",
+    "expected_chapter": 6,
+    "expected_book_page": [
+      115
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is relative atomic mass (ar)?",
+    "expected_keyword": "relative",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      123
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is • atomic mass unit?",
+    "expected_keyword": "atomic",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      124
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is the true mass of  a?",
+    "expected_keyword": "true",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      124
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are relative atomic masses of some elements?",
+    "expected_keyword": "relative",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      125
+    ],
+    "filter": {
+      "chapter_number": 7
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are worked examples?",
+    "expected_keyword": "worked",
+    "expected_chapter": 7,
+    "expected_book_page": [
+      125
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is biology characteristics of organisms 08?",
+    "expected_keyword": "biology",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      139
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is assignment 8.1?",
+    "expected_keyword": "assignment",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      139
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is assignment 8.2?",
+    "expected_keyword": "assignment",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      139
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is 8.1 cellular organization?",
+    "expected_keyword": "cellular",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      140
+    ],
+    "filter": {
+      "chapter_number": 8
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is nutrition?",
+    "expected_keyword": "nutrition",
+    "expected_chapter": 8,
+    "expected_book_page": [
+      143
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is resultant force?",
+    "expected_keyword": "resultant",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      156
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are 9.1 the resultant of several forces?",
+    "expected_keyword": "resultant",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      156
+    ],
+    "filter": {
+      "chapter_number": 9
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are 9.2 resultant of two collinear forces?",
+    "expected_keyword": "resultant",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      157
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is resultant of two collinear forces acting along the same direction?",
+    "expected_keyword": "resultant",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      157
+    ],
+    "filter": {
+      "chapter_number": 9
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are resultant of two collinear forces acting along opposite directions?",
+    "expected_keyword": "resultant",
+    "expected_chapter": 9,
+    "expected_book_page": [
+      160
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are chemistry 10 <br> chemical bonds?",
+    "expected_keyword": "chemistry",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      168
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are 10.1 ionic bonds?",
+    "expected_keyword": "ionic",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      169
+    ],
+    "filter": {
+      "chapter_number": 10
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are chemical bonds?",
+    "expected_keyword": "chemical",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      169
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What is atom positive ion + e?",
+    "expected_keyword": "atom",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      170
+    ],
+    "filter": {
+      "chapter_number": 10
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P1_E",
+    "query": "What are • ionic compounds?",
+    "expected_keyword": "ionic",
+    "expected_chapter": 10,
+    "expected_book_page": [
+      173
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is the world of life?",
+    "expected_keyword": "world",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      1
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is classification of organisms classified?",
+    "expected_keyword": "classification",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      1
+    ],
+    "filter": {
+      "chapter_number": 13
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is • significance of classification of organisms classified?",
+    "expected_keyword": "significance",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is natural classification classified?",
+    "expected_keyword": "natural",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      2
+    ],
+    "filter": {
+      "chapter_number": 13
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is methods of classification of organisms classified?",
+    "expected_keyword": "methods",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is artificial classification classified?",
+    "expected_keyword": "artificial",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      2
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "How is three domain system of classification classified?",
+    "expected_keyword": "three",
+    "expected_chapter": 13,
+    "expected_book_page": [
+      3
+    ],
+    "filter": {
+      "chapter_number": 13
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is continuity of life?",
+    "expected_keyword": "continuity",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      27
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is reproduction?",
+    "expected_keyword": "reproduction",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      27
+    ],
+    "filter": {
+      "chapter_number": 14
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is • asexual reproduction?",
+    "expected_keyword": "asexual",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      27
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is • sexual reproduction?",
+    "expected_keyword": "sexual",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      27
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are bulbils?",
+    "expected_keyword": "bulbils",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      29
+    ],
+    "filter": {
+      "chapter_number": 14
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are underground stems?",
+    "expected_keyword": "underground",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      29
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is artificial vegetative propagation?",
+    "expected_keyword": "artificial",
+    "expected_chapter": 14,
+    "expected_book_page": [
+      29
+    ],
+    "filter": {
+      "chapter_number": 14
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are physics hydrostatic pressure 15 and its applications?",
+    "expected_keyword": "physics",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      63
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is 15.1 pressure?",
+    "expected_keyword": "pressure",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      63
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is example 1?",
+    "expected_keyword": "example",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      63
+    ],
+    "filter": {
+      "chapter_number": 15
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is example 2?",
+    "expected_keyword": "example",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      64
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is 15.2 hydrostatic pressure?",
+    "expected_keyword": "hydrostatic",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      64
+    ],
+    "filter": {
+      "chapter_number": 15
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is dependence of liquid pressure on the shape of the water column?",
+    "expected_keyword": "dependence",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      66
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are 15.3 transmission of pressure through liquids?",
+    "expected_keyword": "transmission",
+    "expected_chapter": 15,
+    "expected_book_page": [
+      68
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is chemistry?",
+    "expected_keyword": "chemistry",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      86
+    ],
+    "filter": {
+      "chapter_number": 16
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is changes in matter 16?",
+    "expected_keyword": "changes",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      86
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are chemical changes?",
+    "expected_keyword": "chemical",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      87
+    ],
+    "filter": {
+      "chapter_number": 16
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are physical changes?",
+    "expected_keyword": "physical",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      87
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are reactants?",
+    "expected_keyword": "reactants",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      87
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are products?",
+    "expected_keyword": "products",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      87
+    ],
+    "filter": {
+      "chapter_number": 16
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are • chemical combination reactions?",
+    "expected_keyword": "chemical",
+    "expected_chapter": 16,
+    "expected_book_page": [
+      88
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are • surface area of reactants?",
+    "expected_keyword": "surface",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      117
+    ],
+    "filter": {
+      "chapter_number": 17
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are • catalysts?",
+    "expected_keyword": "catalysts",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      121
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is - requirement?",
+    "expected_keyword": "requirement",
+    "expected_chapter": 17,
+    "expected_book_page": [
+      121
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is work, energy and power?",
+    "expected_keyword": "work",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      125
+    ],
+    "filter": {
+      "chapter_number": 18
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is 18.1 work?",
+    "expected_keyword": "work",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      125
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is energy?",
+    "expected_keyword": "energy",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      127
+    ],
+    "filter": {
+      "chapter_number": 18
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is kinetic energy?",
+    "expected_keyword": "kinetic",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      128
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is potential energy?",
+    "expected_keyword": "potential",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      130
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is instances where potential energy is used in daily life?",
+    "expected_keyword": "instances",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      134
+    ],
+    "filter": {
+      "chapter_number": 18
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is 18.3 power?",
+    "expected_keyword": "power",
+    "expected_chapter": 18,
+    "expected_book_page": [
+      136
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is current electricity?",
+    "expected_keyword": "current",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      140
+    ],
+    "filter": {
+      "chapter_number": 19
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is 19.1 static electricity and current electricity?",
+    "expected_keyword": "static",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      140
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are 19.2 electricity flowing through conductors?",
+    "expected_keyword": "electricity",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      143
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are conductors?",
+    "expected_keyword": "conductors",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      143
+    ],
+    "filter": {
+      "chapter_number": 19
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are the differences in 19.3 potential difference and the electromotive force?",
+    "expected_keyword": "potential",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      146
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is not drawn from the cell?",
+    "expected_keyword": "drawn",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      146
+    ],
+    "filter": {
+      "chapter_number": 19
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is items required?",
+    "expected_keyword": "items",
+    "expected_chapter": 19,
+    "expected_book_page": [
+      148
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are 20.1 diversity among organisms?",
+    "expected_keyword": "diversity",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      169
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is <mark>assignment 20.1</mark>?",
+    "expected_keyword": "mark",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      173
+    ],
+    "filter": {
+      "chapter_number": 20
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is -polydactyly?",
+    "expected_keyword": "polydactyly",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      173
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What are -brown or blue eyes?",
+    "expected_keyword": "brown",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      173
+    ],
+    "filter": {
+      "chapter_number": 20
+    }
+  },
+  {
+    "document_name": "SCIENCE_G-10_P2_E",
+    "query": "What is -albinism?",
+    "expected_keyword": "albinism",
+    "expected_chapter": 20,
+    "expected_book_page": [
+      173
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the theme of the poem Breakfast?",
+    "expected_keyword": "breakfast",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      6
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How is the relationship portrayed in Father and Son?",
+    "expected_keyword": "father",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      13
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the central emotion expressed in the poem Fear?",
+    "expected_keyword": "fear",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      14
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How does the wife describe the clown in The Clown’s Wife?",
+    "expected_keyword": "clown",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      15
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What does the Nightingale sacrifice in the story The Nightingale and the Rose?",
+    "expected_keyword": "nightingale",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      21,
+      22,
+      23,
+      24
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "Why did the student need a red rose in The Nightingale and the Rose?",
+    "expected_keyword": "student",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      21,
+      22,
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What happened during the bus attack described in the Colin Cowdrey Lecture?",
+    "expected_keyword": "attack",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27,
+      28,
+      29,
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How did Kumar Sangakkara describe the spirit of cricket in Sri Lanka?",
+    "expected_keyword": "cricket",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      27,
+      28,
+      29
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the setting and tone of the short stories in unit two?",
+    "expected_keyword": "stories",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      20
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How is humour presented in the poems in unit one?",
+    "expected_keyword": "humour",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      16
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What is the symbolism of the red rose in Oscar Wilde’s story?",
+    "expected_keyword": "rose",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      24,
+      25
+    ],
+    "filter": {
+      "chapter_number": 2
+    }
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How did the players react calmly during the Lahore terrorist attack?",
+    "expected_keyword": "rational",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      30
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "What message is conveyed about love in The Nightingale and the Rose?",
+    "expected_keyword": "love",
+    "expected_chapter": 2,
+    "expected_book_page": [
+      22,
+      23
+    ],
+    "filter": null
+  },
+  {
+    "document_name": "English_Literary_texts_G-10_E",
+    "query": "How did society and isolation affect the speaker in the poetry section?",
+    "expected_keyword": "society",
+    "expected_chapter": 1,
+    "expected_book_page": [
+      7
+    ],
+    "filter": {
+      "chapter_number": 1
+    }
+  }
+]

@@ -33,7 +33,7 @@ DEFAULT_COLLECTION_NAME = "textbooks"
 
 
 # ==============================================================================
-# Configure Gemini for Vision
+# Configure Gemini for Vision2
 # ==============================================================================
 
 
@@ -73,5 +73,5 @@ def get_groq_api_key() -> str:
 
 
 def get_groq_client() -> NativeGroqClient:
-    """Returns an authenticated native Groq client."""
-    return NativeGroqClient(api_key=get_groq_api_key())
+    """Returns an authenticated native Groq client with timeout and retries."""
+    return NativeGroqClient(api_key=get_groq_api_key(), timeout=30.0, max_retries=3)

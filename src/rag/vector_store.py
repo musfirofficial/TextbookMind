@@ -87,13 +87,20 @@ def init_textbook_collection(
             ("book_page", models.PayloadSchemaType.INTEGER),
             ("document_name", models.PayloadSchemaType.KEYWORD),
         ]
-        for field_name, field_type in filter_fields:
-            client.create_payload_index(
-                collection_name=collection_name,
-                field_name=field_name,
-                field_schema=field_type,
-            )
-        print(f"[QDRANT] Payload indexes created for: {[f[0] for f in filter_fields]}")
+        import warnings
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            for field_name, field_type in filter_fields:
+                try:
+                    client.create_payload_index(
+                        collection_name=collection_name,
+                        field_name=field_name,
+                        field_schema=field_type,
+                    )
+                except Exception:
+                    pass
+        print(f"[QDRANT] Payload indexes configured for: {[f[0] for f in filter_fields]}")
 
 
 # ==============================================================================

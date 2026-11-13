@@ -9,10 +9,12 @@ __pycache__/
 
 # Large Binary Files (Too large for Git)
 data/*.pdf
-data/books/
+data/*.json
 
 # Databases & Vector Indexes (Disposable / Local)
 data/*.db
 data/chroma_db/
 **/chroma_db/
 data/cache/
+data/extracted
+data/qdrant_db

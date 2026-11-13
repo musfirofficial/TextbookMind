@@ -21,6 +21,7 @@ dependencies = [
     "llama-index-llms-groq>=0.6.1",
     "pydantic>=2.14.1",
     "pymupdf>=2.0",
+    "python-dotenv>=1.2.4",
     "python-multipart>=0.0.33",
     "qdrant-client>=1.20.0",
     "sqlalchemy>=2.1.6",

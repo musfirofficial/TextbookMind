@@ -5,7 +5,7 @@ import httpx
 
 from ..core.config import GEMINI_API_URL, get_gemini_api_key
 from ..exceptions import ConfigError, QuotaExceededError, VisionAPIError
-from ..prompts import vision_prompt
+from ..core.prompts import vision_prompt
 
 VISION_PROMPT = vision_prompt()
 

@@ -99,6 +99,3 @@ def create_chunks_from_dataset(
     )
     return final_chunks
 
-
-# if __name__ == "__main__":
-# create_chunks_from_dataset(dataset_path="data/extracted/SCIENCE_G-10_P1_E.json")
